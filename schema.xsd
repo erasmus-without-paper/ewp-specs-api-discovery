@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    elementFormDefault="qualified"
+
+    targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-WRTODO"
+    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-WRTODO"
+>
+    <xs:import
+        schemaLocation="http://www.w3.org/2001/03/xml.xsd"
+        namespace="http://www.w3.org/XML/1998/namespace"
+    />
+
+    <xs:annotation>
+        <xs:documentation>
+            This schema is a part of the Erasmus Without Paper project. Before you start
+            using it, make sure you have read the general rules described here:
+
+            http://developers.erasmuswithoutpaper.eu/
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="manifest">
+        <xs:annotation>
+            <xs:documentation>
+                EWP Discovery Manifest. This is a description of a single host within the EWP
+                Network. This description is provided by the host itself.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="provider" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This section describes the provider of this host.
+
+                            If your host covers multiple higher education institutions (HEIs), then
+                            probably none of these institutions is a provider. If your host covers only a
+                            single HEI, then probably this HEI is also the host provider. (It is also
+                            theoretically possible for one provider to have multiple hosts.)
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="name" minOccurs="0" maxOccurs="unbounded" type="StringWithOptionalLang">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Name of the provider. Can be given in multiple languages.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="url" minOccurs="0" maxOccurs="unbounded" type="HTTP-or-HTTPS">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        The home page URL of the provider (multiple URLs may be provided).
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="admin-email" minOccurs="0" maxOccurs="unbounded" type="Email">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Address of the server administrator which may be contacted in case of
+                            server-related problems. Multiple addresses may be provided.
+
+                            Also, take a look at the `dev-email` elements described in the APIs section.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="dev-notes" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Additional information provided by administrators and/or developers of this
+                            host for the client developers. Must be provided in English.
+
+                            E.g. "This host is a DEMO server. We plan to keep it online for testing.".
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="apis-implemented">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This section describes all APIs which have been implemented by this EWP host.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="discovery" type="DiscoveryApiEntry">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        If this element is present, then the host states that it implements the
+                                        EWP Discovery API (which means that it hosts a manifest file you are reading
+                                        about just now).
+
+                                        The Discovery API is the only API that is required. Implementing it is one of
+                                        the requirements of becoming an EWP Host.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="heis">
+                    <xs:annotation>
+                        <xs:documentation>
+                            A list of HEIs (Higher Education Institutions) that are "covered" by this host.
+
+                            Enlisting an institution here indicates that the host wants to receive queries
+                            regarding this institution and will be able to understand them. If this list is
+                            empty then the host is likely to not receive any queries at all.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="hei">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Describes a single HEI (Higher Education Institution) "covered" by this host.
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="id" minOccurs="1" maxOccurs="unbounded">
+                                            <xs:annotation>
+                                                <xs:documentation>
+                                                    For server implementers: You MUST be able to provide at least one common
+                                                    identifier for each institution. You SHOULD provide all of them, if you can.
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute name="type" use="required">
+                                                            <xs:annotation>
+                                                                <xs:documentation>
+                                                                    Identifier type. Common identifier types are provided in the enumeration.
+                                                                </xs:documentation>
+                                                            </xs:annotation>
+                                                            <xs:simpleType>
+                                                                <xs:restriction base="xs:string">
+                                                                    <xs:enumeration value="pic">
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>
+                                                                                PIC code identifier.
+
+                                                                                https://ec.europa.eu/research/participants/portal/desktop/en/organisations/register.html
+                                                                            </xs:documentation>
+                                                                        </xs:annotation>
+                                                                    </xs:enumeration>
+                                                                    <xs:enumeration value="erasmus">
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>
+                                                                                Erasmus institutional code.
+                                                                            </xs:documentation>
+                                                                        </xs:annotation>
+                                                                    </xs:enumeration>
+                                                                    <xs:enumeration value="schac">
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>
+                                                                                SCHAC-style identifier. As described in the SCHAC documentation for the
+                                                                                "schacHomeOrganization" element (e.g. "uw.edu.pl").
+
+                                                                                Please note, that you can generate SCHAC identifiers all by yourself, based on
+                                                                                the knowledge of the web domain bound to this institution. Simply use your
+                                                                                "best guess". SCHAC identifiers may change in time (e.g. after institutions are
+                                                                                merged), but you should provide them nonetheless.
+                                                                            </xs:documentation>
+                                                                        </xs:annotation>
+                                                                    </xs:enumeration>
+                                                                    <xs:pattern value=".*">
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>
+                                                                                You can also have any number of custom identifier types.
+                                                                            </xs:documentation>
+                                                                        </xs:annotation>
+                                                                    </xs:pattern>
+                                                                </xs:restriction>
+                                                            </xs:simpleType>
+                                                        </xs:attribute>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="name" type="StringWithOptionalLang" maxOccurs="unbounded">
+                                            <xs:annotation>
+                                                <xs:documentation>
+                                                    The name of the institution. May be provided in multiple languages.
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="certificate" type="X509Certificate" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Base64-encoded X.509 certificate used by this host. Multiple certificates may
+                            be provided by the host and all of them should be acceptable by the other
+                            party.
+
+                            More about security: http://developers.erasmuswithoutpaper.eu/
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="HTTP-or-HTTPS">
+        <xs:annotation>
+            <xs:documentation>
+                Any HTTP URL (secure HTTPS is also accepted).
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:anyURI">
+            <xs:pattern value="https?://.+" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="HTTPS">
+        <xs:annotation>
+            <xs:documentation>
+                Secure (HTTPS) URL.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:anyURI">
+            <xs:pattern value="https://.+" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ApiEntry">
+        <xs:annotation>
+            <xs:documentation>
+                A common base type for children of the `apis-implemented` element.
+
+                It is a common base *now*, but clients SHOULD NOT assume that it will be forever.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="version">
+                <xs:annotation>
+                    <xs:documentation>
+                        The API version number the host claims its implementation of this API conforms
+                        to. Host implementers MUST make sure that this number is kept in sync with their
+                        implementations.
+
+                        E.g. If you have used the `1.1.3` release of some API when you have implemented
+                        your endpoint, then you SHOULD put `1.1.3` here. If you put `1.2.0` here later
+                        on, then it means that you have just implemented some new `1.2.0` features (and
+                        you want to let other clients know that you have implemented them).
+
+                        Use `0.0.0` if you want to implement an API which has not been officially
+                        released yet.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]+\.[0-9]+\.[0-9]+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="dev-email" minOccurs="0" maxOccurs="unbounded" type="Email">
+                <xs:annotation>
+                    <xs:documentation>
+                        Address of the developer who supports this API (e.g. the company which has
+                        provided the implementation). Multiple addresses may be provided (or none, if
+                        this API is not being supported by any developer).
+
+                        This email address may be contacted in case of implementation-related problems.
+
+                        Also, take a look at the `admin-email` described in the manifest header.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="dev-notes" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Additional information provided by host developers for the client developers.
+
+                        E.g. "We are currently not delivering &lt;description&gt; elements because our
+                        model is incompatible with the `1.1.3` schema. We will start to deliver them
+                        once we upgrade to the `1.2.0` schema."
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DiscoveryApiEntry">
+        <xs:complexContent>
+            <xs:extension base="ApiEntry">
+                <xs:sequence>
+                    <xs:element name="url" type="HTTPS">
+                        <xs:annotation>
+                            <xs:documentation>
+                                An URL at which the Discovery Manifest can be found.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="StringWithOptionalLang">
+        <xs:annotation>
+            <xs:documentation>
+                A string with an optional (but RECOMMENDED) xml:lang attribute. It is used in
+                places where a name of some entity can be provided in multiple languages.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:token">
+                <xs:attribute ref="xml:lang" use="optional" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="PlaintextMultilineStringWithOptionalLang">
+        <xs:annotation>
+            <xs:documentation>
+                This is very similar to StringWithOptionalLang, but it inherits from xs:string
+                (instead of xs:token), and it MAY contain basic whitespace formatting, such
+                us line breaks and double line breaks (for spliting paragraphs). The values
+                still must be in plain text though (no HTML is allowed).
+
+                A note for EMREX Client implementers:
+
+                Whenever you want to display the values read from a field of this type, you
+                SHOULD make sure that the end user will see the line breaks in the right
+                places. E.g. use your equivalent of the `nl2br` function.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute ref="xml:lang" use="optional" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="Email">
+        <xs:annotation>
+            <xs:documentation>
+                A simple pattern for email address.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@]+@[^\.]+\..+"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="X509Certificate">
+        <xs:restriction base="xs:base64Binary"/>
+    </xs:simpleType>
+</xs:schema>
