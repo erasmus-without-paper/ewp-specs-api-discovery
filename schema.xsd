@@ -24,8 +24,10 @@
     <xs:element name="manifest">
         <xs:annotation>
             <xs:documentation>
-                EWP Discovery Manifest. This is a description of a single host within the EWP
-                Network. This description is provided by the host itself.
+                EWP Discovery Manifest.
+
+                Manifests contain descriptions of servers and clients associated with a single
+                EWP Network Host. This description is provided by the EWP Host itself.
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -194,16 +196,54 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="certificate" type="X509Certificate" maxOccurs="unbounded">
+                <xs:element name="client-certificates-used">
                     <xs:annotation>
                         <xs:documentation>
-                            Base64-encoded X.509 certificate used by this host. Multiple certificates may
-                            be provided by the host and all of them should be acceptable by the other
-                            party.
+                            The list of SSL *client* certificates used by this host to make requests to
+                            other EWP hosts.
+
+                            You should provide at least one certificate (or domain) if you intend to
+                            perform requests within EWP Network. However, having no client certificates
+                            listed here is also valid (if you want this host to be a server only).
 
                             More about security: http://developers.erasmuswithoutpaper.eu/
                         </xs:documentation>
                     </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="certificate" type="X509Certificate" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Base64-encoded X.509 certificate. This MAY be a self-signed certificate.
+
+                                        Having self-signed certificates installed in developers' browsers might make
+                                        development and debugging significantly easier. (It will allow developers to
+                                        make EWP requests directly in their browsers.) However, it is NOT RECOMMENDED
+                                        to use specific certificates in production environment (use the &lt;domain&gt;
+                                        elements instead).
+
+                                        You MAY provide multiple certificates.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="domain" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        This element indicates that the host will be using client certificate(s) bound
+                                        to the given domain name (the X.509 certificate will have a "DNS Name" entry
+                                        matching this domain).
+
+                                        You MAY provide multiple domain names.
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[a-zA-Z0-9-_.]+"></xs:pattern>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
                 </xs:element>
             </xs:sequence>
         </xs:complexType>
@@ -297,6 +337,10 @@
                         <xs:annotation>
                             <xs:documentation>
                                 An URL at which the Discovery Manifest can be found.
+
+                                This URL MUST match the URL submitted to the EWP Registry. Currently, you
+                                cannot move your Manifest to other location simply by updating this element -
+                                you'll need to contact the EWP Registry maintainers to do that.
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
