@@ -12,10 +12,13 @@ Summary
 implement in order to become a basic member of the *Erasmus Without Paper*
 Network.
 
- * It serves to identify you. It's like a "business card" of your EWP Host.
+ * It serves to identify you, announce which HEIs your system covers, and which
+   certificates you are going to use when you will be fetching the data from
+   the EWP Network. It's like a simple "business card" of your EWP Host.
 
  * It serves to inform all **other** members of the network about which
-   features **you** have implemented.
+   features (APIs) **you** have implemented. This list MAY include external
+   APIs (unrelated to the EWP Project).
 
 
 Requirements

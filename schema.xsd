@@ -144,7 +144,7 @@
                                                                     <xs:enumeration value="pic">
                                                                         <xs:annotation>
                                                                             <xs:documentation>
-                                                                                PIC code identifier.
+                                                                                PIC identifier.
 
                                                                                 https://ec.europa.eu/research/participants/portal/desktop/en/organisations/register.html
                                                                             </xs:documentation>
@@ -255,8 +255,8 @@
                         on, then it means that you have just implemented some new `1.2.0` features (and
                         you want to let other clients know that you have implemented them).
 
-                        Use `0.0.0` if you want to implement an API which has not been officially
-                        released yet.
+                        Use `0.0.0` if you're implementing a draft API, which has not been officially
+                        released yet and doesn't yet have a version number.
                     </xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
