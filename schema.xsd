@@ -33,12 +33,8 @@
                 <xs:element name="provider" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>
-                            This section describes the provider of this host.
-
-                            If your host covers multiple higher education institutions (HEIs), then
-                            probably none of these institutions is a provider. If your host covers only a
-                            single HEI, then probably this HEI is also the host provider. (It is also
-                            theoretically possible for one provider to have multiple hosts.)
+                            Host's *provider* is the institution or company which maintains the host's
+                            infrastructure.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
@@ -46,14 +42,15 @@
                             <xs:element name="name" minOccurs="0" maxOccurs="unbounded" type="StringWithOptionalLang">
                                 <xs:annotation>
                                     <xs:documentation>
-                                        Name of the provider. Can be given in multiple languages.
+                                        Name of the institution or company. Can be given in multiple languages.
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="url" minOccurs="0" maxOccurs="unbounded" type="HTTP-or-HTTPS">
                                 <xs:annotation>
                                     <xs:documentation>
-                                        The home page URL of the provider (multiple URLs may be provided).
+                                        The home page URL of the institution or company (multiple URLs may be
+                                        provided).
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
