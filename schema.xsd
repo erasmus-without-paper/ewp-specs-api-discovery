@@ -122,11 +122,27 @@
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="id" minOccurs="1" maxOccurs="unbounded">
+                                        <xs:element name="schac-id" type="xs:string">
                                             <xs:annotation>
                                                 <xs:documentation>
-                                                    For server implementers: You MUST be able to provide at least one common
-                                                    identifier for each institution. You SHOULD provide all of them, if you can.
+                                                    SCHAC identifier of this HEI. As described in the SCHAC documentation for the
+                                                    "schacHomeOrganization" element (e.g. "uw.edu.pl").
+
+                                                    This element is REQUIRED. Whenever you add a new HEI to the Manifest, you'll
+                                                    need to generate a proper SCHAC identifier for this HEI. Simply use your "best
+                                                    guess".
+
+                                                    More information can be found here:
+                                                    https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/master/README.md#schac-identifiers
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="other-id" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:annotation>
+                                                <xs:documentation>
+                                                    These elements are optional, but you SHOULD provide all the identifiers you
+                                                    can. This will help the EWP Registry to maintain its HEI identifiers mapping
+                                                    (and, in turn, allow other EWP Hosts to recognize your HEIs).
                                                 </xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
@@ -153,19 +169,6 @@
                                                                         <xs:annotation>
                                                                             <xs:documentation>
                                                                                 Erasmus institutional code.
-                                                                            </xs:documentation>
-                                                                        </xs:annotation>
-                                                                    </xs:enumeration>
-                                                                    <xs:enumeration value="schac">
-                                                                        <xs:annotation>
-                                                                            <xs:documentation>
-                                                                                SCHAC-style identifier. As described in the SCHAC documentation for the
-                                                                                "schacHomeOrganization" element (e.g. "uw.edu.pl").
-
-                                                                                Please note, that you can generate SCHAC identifiers all by yourself, based on
-                                                                                the knowledge of the web domain bound to this institution. Simply use your
-                                                                                "best guess". SCHAC identifiers may change in time (e.g. after institutions are
-                                                                                merged), but you should provide them nonetheless.
                                                                             </xs:documentation>
                                                                         </xs:annotation>
                                                                     </xs:enumeration>
