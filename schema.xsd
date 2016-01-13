@@ -192,9 +192,9 @@
                             The list of SSL *client* certificates used by this host to make requests to
                             other EWP hosts.
 
-                            You should provide at least one certificate (or domain) if you intend to
-                            perform requests within EWP Network. However, having no client certificates
-                            listed here is also valid (if you want this host to be a server only).
+                            You should provide at least one certificate (or its common-name) if you intend
+                            to perform requests within EWP Network. However, having no client certificates
+                            is also valid (if you want your EWP Host to be "server only").
 
                             More about security: http://developers.erasmuswithoutpaper.eu/
                         </xs:documentation>
@@ -207,30 +207,28 @@
                                         Base64-encoded X.509 certificate. This MAY be a self-signed certificate.
 
                                         Having self-signed certificates installed in developers' browsers might make
-                                        development and debugging significantly easier. (It will allow developers to
-                                        make EWP requests directly in their browsers.) However, it is NOT RECOMMENDED
-                                        to use specific certificates in production environment (use the &lt;domain&gt;
-                                        elements instead).
+                                        development and debugging significantly easier (it will allow developers to
+                                        make EWP requests directly in their browsers). However, it is NOT RECOMMENDED
+                                        to use them in production environment (use &lt;common-name&gt; elements
+                                        instead).
 
-                                        You MAY provide multiple certificates.
+                                        You MAY provide multiple certificate elements.
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="domain" maxOccurs="unbounded">
+                            <xs:element name="common-name" type="xs:string" maxOccurs="unbounded">
                                 <xs:annotation>
                                     <xs:documentation>
-                                        This element indicates that the host will be using client certificate(s) bound
-                                        to the given domain name (the X.509 certificate will have a "DNS Name" entry
-                                        matching this domain).
+                                        This element indicates that the host's clients will be using a trusted
+                                        certificate(s) bound to a subject who's common name (CN) will be EXACTLY EQUAL
+                                        to the value provided by this element. E.g. "*.uw.edu.pl".
 
-                                        You MAY provide multiple domain names.
+                                        Please note that such certificates need to be signed by a trusted CA. Clients
+                                        MAY use the same certificates which your servers do.
+
+                                        You MAY provide multiple common-name elements.
                                     </xs:documentation>
                                 </xs:annotation>
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:pattern value="[a-zA-Z0-9\-_.]+"></xs:pattern>
-                                    </xs:restriction>
-                                </xs:simpleType>
                             </xs:element>
                         </xs:sequence>
                     </xs:complexType>
