@@ -37,8 +37,8 @@ In order to implement the Discovery API, you will need to:
    Discovery Manifest.
 
  * Once you have read and understood the above steps, contact the
-   administrators of the [EWP Partners Registry][registry] and request your
-   EWP Host to be added to the Registry.
+   administrators of the [EWP Partners Registry][registry-intro] and request
+   your EWP Host to be added to the Registry.
 
 
 Discovery Manifest File
@@ -46,11 +46,12 @@ Discovery Manifest File
 
 The manifest itself is a simple XML file.
 
- * It MUST conform to the XML Schema provided in the attached [schema.xsd]
-   (schema.xsd) file.
- * See [example.xml](example.xml) for an example of a valid manifest.
+ * It MUST conform to the XML Schema provided in the attached [manifest.xsd]
+   (manifest.xsd) file.
+ * See [manifest-example.xml](manifest-example.xml) for an example of a valid
+   manifest.
 
 
-[registry]: https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/master/README.md#registry)
+[registry-intro]: https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/master/README.md#registry
 [develhub]: http://developers.erasmuswithoutpaper.eu/
 [statuses]: https://github.com/erasmus-without-paper/ewp-specs-management/blob/master/README.md#statuses
