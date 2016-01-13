@@ -76,6 +76,16 @@
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
+                            <xs:element name="echo" type="EchoApiEntry">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        If this element is present, then the host states that it implements the
+                                        EWP Echo API described here:
+
+                                        https://github.com/erasmus-without-paper/ewp-specs-api-echo
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
                             <xs:any namespace="##other" maxOccurs="unbounded" processContents="strict">
                                 <xs:annotation>
                                     <xs:documentation>
@@ -326,6 +336,22 @@
                                 This URL MUST match the URL submitted to the EWP Registry. Currently, you
                                 cannot move your Manifest to other location simply by updating this element -
                                 you'll need to contact the EWP Registry maintainers to do that.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EchoApiEntry">
+        <xs:complexContent>
+            <xs:extension base="ApiEntry">
+                <xs:sequence>
+                    <xs:element name="url" type="HTTPS">
+                        <xs:annotation>
+                            <xs:documentation>
+                                An URL at which the EWP Echo API is implemented.
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
