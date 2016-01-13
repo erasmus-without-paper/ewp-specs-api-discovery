@@ -99,6 +99,16 @@
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
+                            <xs:any namespace="##other" maxOccurs="unbounded" processContents="strict">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        We allow for the manifest to describe external APIs too (unrelated to the EWP
+                                        Project, but compatible with the EWP Network). It is RECOMMENDED that all such
+                                        APIs are documented in a similar fashion to the one used within the EWP
+                                        Project.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:any>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
