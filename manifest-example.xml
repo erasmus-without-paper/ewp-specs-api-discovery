@@ -1,8 +1,11 @@
 <manifest
-    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v1-WRTODO"
+    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/master"
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v1-WRTODO manifest.xsd"
+    xsi:schemaLocation="
+        https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/master
+        https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-api-discovery/master/manifest.xsd
+    "
 >
     <dev-email>admin1@example.com</dev-email>
     <dev-notes>It's not a real manifest. Just an example.</dev-notes>

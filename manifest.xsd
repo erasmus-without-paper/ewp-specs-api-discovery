@@ -4,8 +4,8 @@
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
     elementFormDefault="qualified"
 
-    targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v1-WRTODO"
-    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v1-WRTODO"
+    targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/master"
+    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/master"
 >
     <xs:import
         schemaLocation="http://www.w3.org/2001/03/xml.xsd"
@@ -93,11 +93,6 @@
                                         Registry API described here:
 
                                         https://github.com/erasmus-without-paper/ewp-specs-api-registry
-
-                                        Please note, that at time of writing this, only one official registry exists
-                                        (and no other EWP Hosts should implement this API):
-
-                                        https://registry.erasmuswithoutpaper.eu/
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
