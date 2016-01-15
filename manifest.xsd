@@ -46,7 +46,7 @@
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element name="dev-notes" minOccurs="0">
+                <xs:element name="dev-notes" minOccurs="0" type="MultilineString">
                     <xs:annotation>
                         <xs:documentation>
                             Additional information provided by administrators and/or developers of this
@@ -76,7 +76,7 @@
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="echo" type="EchoApiEntry">
+                            <xs:element name="echo" minOccurs="0" type="EchoApiEntry">
                                 <xs:annotation>
                                     <xs:documentation>
                                         If this element is present, then the host states that it implements the
@@ -86,7 +86,23 @@
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:any namespace="##other" maxOccurs="unbounded" processContents="strict">
+                            <xs:element name="registry" minOccurs="0" type="RegistryApiEntry">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        If this element is present, then the host states that it implements the
+                                        Registry API described here:
+
+                                        https://github.com/erasmus-without-paper/ewp-specs-api-registry
+
+                                        Please note, that at time of writing this, only one official registry exists
+                                        (and no other EWP Hosts should implement this API):
+
+                                        https://registry.erasmuswithoutpaper.eu/
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+
+                            <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded" processContents="strict">
                                 <xs:annotation>
                                     <xs:documentation>
                                         We allow for the manifest to describe external APIs too (unrelated to the EWP
@@ -99,7 +115,7 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="heis-covered">
+                <xs:element name="institutions-covered" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>
                             A list of HEIs (Higher Education Institutions) that are covered by this host.
@@ -111,7 +127,7 @@
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="hei">
+                            <xs:element name="hei" minOccurs="0" maxOccurs="unbounded">
                                 <xs:annotation>
                                     <xs:documentation>
                                         Describes a single HEI (Higher Education Institution) "covered" by this host.
@@ -119,27 +135,12 @@
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="schac-id" type="xs:string">
-                                            <xs:annotation>
-                                                <xs:documentation>
-                                                    SCHAC identifier of this HEI. As described in the SCHAC documentation for the
-                                                    "schacHomeOrganization" element (e.g. "uw.edu.pl").
-
-                                                    This element is REQUIRED. Whenever you add a new HEI to the Manifest, you'll
-                                                    need to generate a proper SCHAC identifier for this HEI. Simply use your "best
-                                                    guess".
-
-                                                    More information can be found here:
-                                                    https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/master/README.md#schac-identifiers
-                                                </xs:documentation>
-                                            </xs:annotation>
-                                        </xs:element>
                                         <xs:element name="other-id" minOccurs="0" maxOccurs="unbounded">
                                             <xs:annotation>
                                                 <xs:documentation>
-                                                    These elements are optional, but you SHOULD provide all the identifiers you
-                                                    can. This will help the EWP Registry to maintain its HEI identifiers mapping
-                                                    (and, in turn, allow other EWP Hosts to recognize your HEIs).
+                                                    SCHAC identifier provided in the attribute is the primary HEI identifier, but
+                                                    you SHOULD provide all the identifiers you can. Otherwise, other EWP Hosts may
+                                                    not be able to recognise your HEIs.
                                                 </xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
@@ -191,12 +192,27 @@
                                             </xs:annotation>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="id" type="xs:string" use="required">
+                                        <xs:annotation>
+                                            <xs:documentation>
+                                                SCHAC identifier of this HEI. As described in the SCHAC documentation for the
+                                                "schacHomeOrganization" element (e.g. "uw.edu.pl").
+
+                                                This attribute is REQUIRED. Whenever you add a new HEI to the Manifest, you'll
+                                                need to deduce a proper SCHAC identifier for this HEI. Simply use your "best
+                                                guess".
+
+                                                More information can be found here:
+                                                https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/master/README.md#schac-identifiers
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="client-certificates-used">
+                <xs:element name="client-certificates-in-use" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>
                             The list of SSL *client* certificates used by this host to make requests to
@@ -211,7 +227,21 @@
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="certificate" type="X509Certificate" maxOccurs="unbounded">
+                            <xs:element name="common-name" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        This element indicates that the host's clients will be using a trusted
+                                        certificate(s) bound to a subject who's common name (CN) will be EXACTLY EQUAL
+                                        to the value provided by this element. E.g. "*.uw.edu.pl".
+
+                                        Please note that such certificates need to be signed by a trusted CA. Clients
+                                        MAY use the same certificates which your servers do.
+
+                                        You MAY provide multiple common-name elements.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="certificate" type="X509Certificate" minOccurs="0" maxOccurs="unbounded">
                                 <xs:annotation>
                                     <xs:documentation>
                                         Base64-encoded X.509 certificate. This MAY be a self-signed certificate.
@@ -223,20 +253,6 @@
                                         instead).
 
                                         You MAY provide multiple certificate elements.
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                            <xs:element name="common-name" type="xs:string" maxOccurs="unbounded">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        This element indicates that the host's clients will be using a trusted
-                                        certificate(s) bound to a subject who's common name (CN) will be EXACTLY EQUAL
-                                        to the value provided by this element. E.g. "*.uw.edu.pl".
-
-                                        Please note that such certificates need to be signed by a trusted CA. Clients
-                                        MAY use the same certificates which your servers do.
-
-                                        You MAY provide multiple common-name elements.
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
@@ -279,28 +295,6 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="version">
-                <xs:annotation>
-                    <xs:documentation>
-                        The API version number the host claims its implementation of this API conforms
-                        to. Host implementers MUST make sure that this number is kept in sync with their
-                        implementations.
-
-                        E.g. If you have used the `1.1.3` release of some API when you have implemented
-                        your endpoint, then you SHOULD put `1.1.3` here. If you put `1.2.0` here later
-                        on, then it means that you have just implemented some new `1.2.0` features (and
-                        you want to let other clients know that you have implemented them).
-
-                        Use `0.0.0` if you're implementing a draft API, which has not been officially
-                        released yet and doesn't yet have a version number.
-                    </xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:pattern value="[0-9]+\.[0-9]+\.[0-9]+"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
             <xs:element name="dev-email" minOccurs="0" maxOccurs="unbounded" type="Email">
                 <xs:annotation>
                     <xs:documentation>
@@ -322,6 +316,28 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
+        <xs:attribute name="version">
+            <xs:annotation>
+                <xs:documentation>
+                    The API version number the host claims its implementation of this API conforms
+                    to. Host implementers MUST make sure that this number is kept in sync with their
+                    implementations.
+
+                    E.g. If you have used the `1.1.3` release of some API when you have implemented
+                    your endpoint, then you SHOULD put `1.1.3` here. If you put `1.2.0` here later
+                    on, then it means that you have just implemented some new `1.2.0` features (and
+                    you want to let other clients know that you have implemented them).
+
+                    Use `0.0.0` if you're implementing a draft API, which has not been officially
+                    released yet and doesn't yet have a version number.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[0-9]+\.[0-9]+\.[0-9]+"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="DiscoveryApiEntry">
@@ -360,6 +376,22 @@
         </xs:complexContent>
     </xs:complexType>
 
+    <xs:complexType name="RegistryApiEntry">
+        <xs:complexContent>
+            <xs:extension base="ApiEntry">
+                <xs:sequence>
+                    <xs:element name="catalogue-url" type="HTTPS">
+                        <xs:annotation>
+                            <xs:documentation>
+                                An URL at which the Registry's catalogue can be found.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
     <xs:complexType name="StringWithOptionalLang">
         <xs:annotation>
             <xs:documentation>
@@ -369,6 +401,38 @@
         </xs:annotation>
         <xs:simpleContent>
             <xs:extension base="xs:string">
+                <xs:attribute ref="xml:lang" use="optional" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="MultilineString">
+        <xs:annotation>
+            <xs:documentation>
+                This is very similar to a regular xs:string, but whenever this type is used it
+                indicates that the content MAY contain basic whitespace formatting, such us
+                line breaks and double line breaks (for spliting paragraphs). The values still
+                MUST be in plaintext though (no HTML is allowed).
+
+                Clients which process data of this type MUST respect line break when they
+                display the data to the end user (replace CRs and LFs with &lt;br&gt;s).
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string"/>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="MultilineStringWithOptionalLang">
+        <xs:annotation>
+            <xs:documentation>
+                A multiline string (as defined in the MultilineString) with an optional (but
+                RECOMMENDED) xml:lang attribute. It is used in places where a description of
+                some entity can be provided in multiple languages.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="MultilineString">
                 <xs:attribute ref="xml:lang" use="optional" />
             </xs:extension>
         </xs:simpleContent>
@@ -385,7 +449,28 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="X509Certificate">
-        <xs:restriction base="xs:base64Binary"/>
-    </xs:simpleType>
+    <xs:complexType name="X509Certificate">
+        <xs:annotation>
+            <xs:documentation>
+                Base64-encoded X.509 certificate.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:base64Binary">
+                <xs:attribute name="fingerprint" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>
+                            X.509 certificate's SHA-1 thumbprint. This attribute is optional in Manifest
+                            files. If missing, the Registry Service will compute it properly.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[0-9a-f]{40}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
 </xs:schema>
