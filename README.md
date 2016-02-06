@@ -52,6 +52,6 @@ The manifest itself is a simple XML file.
    manifest.
 
 
-[registry-intro]: https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/master/README.md#registry
+[registry-intro]: https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/README.md#registry
 [develhub]: http://developers.erasmuswithoutpaper.eu/
-[statuses]: https://github.com/erasmus-without-paper/ewp-specs-management/blob/master/README.md#statuses
+[statuses]: https://github.com/erasmus-without-paper/ewp-specs-management/blob/stable-v1/README.md#statuses

@@ -198,7 +198,7 @@
                                                 guess".
 
                                                 More information can be found here:
-                                                https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/master/README.md#schac-identifiers
+                                                https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/README.md#schac-identifiers
                                             </xs:documentation>
                                         </xs:annotation>
                                     </xs:attribute>
