@@ -122,6 +122,12 @@
                             Enlisting an institution here indicates that the host wants to receive queries
                             regarding this institution and will be able to understand them. If this list is
                             empty then the host is likely to not receive any queries at all.
+
+                            Be advised, that the Registry Service MAY ignore some (or all) of the items
+                            submitted here, for example if it finds that some institutions are already
+                            covered by a different EWP Host. If, for some reason, your items are not being
+                            imported, and you're not sure why, please contact the Registry Service
+                            maintainers.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
@@ -318,7 +324,7 @@
                     you want to let other clients know that you have implemented them).
 
                     Use `0.0.0` if you're implementing a draft API, which has not been officially
-                    released yet and doesn't yet have a version number.
+                    released yet and doesn't have any version number yet.
                 </xs:documentation>
             </xs:annotation>
             <xs:simpleType>

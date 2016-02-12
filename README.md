@@ -12,17 +12,15 @@ Summary
 implement in order to become a basic member of the *Erasmus Without Paper*
 Network.
 
- * It serves to identify you, announce which HEIs your system covers, and which
-   certificates you are going to use when you will be fetching the data from
-   the EWP Network. It's like a simple "business card" of your EWP Host.
-
- * It serves to inform all **other** members of the network about which
-   features (APIs) **you** have implemented. This list MAY include external
-   APIs (unrelated to the EWP Project).
+Discovery manifest files serve to announce which HEIs your system covers, which
+features (APIs) you have implemented, and which credentials your clients are
+going to use when fetching the data from the EWP Network. In some cases, you
+may be required to serve multiple manifest files (e.g. if the number of APIs
+covered differs from HEI to HEI).
 
 
-Requirements
-------------
+Server requirements
+-------------------
 
 In order to implement the Discovery API, you will need to:
 
@@ -39,6 +37,14 @@ In order to implement the Discovery API, you will need to:
  * Once you have read and understood the above steps, contact the
    administrators of the [EWP Partners Registry][registry-intro] and request
    your EWP Host to be added to the Registry.
+
+
+Client requirements
+-------------------
+
+In general, Manifest files **should be read by the Registry Service only**. You
+SHOULD NOT attempt to process the Manifest files of other EWP Hosts by
+yourself. Use the Registry instead.
 
 
 Discovery Manifest File
