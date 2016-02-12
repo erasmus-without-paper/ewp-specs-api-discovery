@@ -4,6 +4,18 @@ Release notes
 This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
+Next version (2.0.0, unreleased)
+--------------------------------
+
+Backward-incompatible changes:
+
+* The `<client-certificates-in-use>` element has be renamed to
+  `<client-credentials-in-use>`.
+
+* The `<common-name>` element was removed. [Click here]
+  (https://github.com/erasmus-without-paper/ewp-specs-architecture/issues/2)
+  for details.
+
 
 1.0.1
 -----

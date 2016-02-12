@@ -4,8 +4,8 @@
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
     elementFormDefault="qualified"
 
-    targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v1"
-    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v1"
+    targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v2"
+    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v2"
 >
     <xs:import
         schemaLocation="http://www.w3.org/2001/03/xml.xsd"
@@ -207,35 +207,25 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="client-certificates-in-use" minOccurs="0">
+                <xs:element name="client-credentials-in-use" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>
-                            The list of SSL *client* certificates used by this host to make requests to
+                            The list of client credentials used by this host to make requests to
                             other EWP hosts.
 
-                            You should provide at least one certificate (or its common-name) if you intend
-                            to perform requests within EWP Network. However, having no client certificates
-                            is also valid (if you want your EWP Host to be "server only").
+                            You should have this element present if you intend to perform requests within
+                            the EWP Network. However, it's worth noting, that not having it is also valid
+                            (if you want your EWP Host to be "server only").
 
-                            More about security: http://developers.erasmuswithoutpaper.eu/
+                            Be advised, that the Registry Service MAY ignore some (or all) of the
+                            credentials submitted here, for example if it finds they do not meet proper
+                            security standards. If, for some reason, your credentials are not being
+                            imported, and you're not sure why, please contact the Registry Service
+                            administrators.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="common-name" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        This element indicates that the host's clients will be using a trusted
-                                        certificate(s) bound to a subject who's common name (CN) will be EXACTLY EQUAL
-                                        to the value provided by this element. E.g. "*.uw.edu.pl".
-
-                                        Please note that such certificates need to be signed by a trusted CA. Clients
-                                        MAY use the same certificates which your servers do.
-
-                                        You MAY provide multiple common-name elements.
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
                             <xs:element name="certificate" type="X509Certificate" minOccurs="0" maxOccurs="unbounded">
                                 <xs:annotation>
                                     <xs:documentation>
@@ -244,10 +234,10 @@
                                         Having self-signed certificates installed in developers' browsers might make
                                         development and debugging significantly easier (it will allow developers to
                                         make EWP requests directly in their browsers). However, it is NOT RECOMMENDED
-                                        to use them in production environment (use &lt;common-name&gt; elements
-                                        instead).
+                                        to use them in production environment.
 
-                                        You MAY provide multiple certificate elements.
+                                        IMPORTANT SECURITY NOTE: If your private key is compromised, you MUST
+                                        immediatelly remove all certificates based on this key from your manifest.
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
@@ -455,8 +445,8 @@
                 <xs:attribute name="fingerprint" use="optional">
                     <xs:annotation>
                         <xs:documentation>
-                            X.509 certificate's SHA-1 thumbprint. This attribute is optional in Manifest
-                            files. If missing, the Registry Service will compute it properly.
+                            X.509 certificate's SHA-1 thumbprint. This attribute is optional, the
+                            Registry Service can compute it on itself.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:simpleType>
