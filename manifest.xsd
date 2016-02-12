@@ -143,9 +143,9 @@
                                         <xs:element name="other-id" minOccurs="0" maxOccurs="unbounded">
                                             <xs:annotation>
                                                 <xs:documentation>
-                                                    SCHAC identifier provided in the attribute is the primary HEI identifier, but
-                                                    you SHOULD provide all the identifiers you can. Otherwise, other EWP Hosts may
-                                                    not be able to recognise your HEIs.
+                                                    SCHAC identifier (provided in the `id` attribute described below) is the
+                                                    primary HEI identifier, but you SHOULD provide all the identifiers you can.
+                                                    Otherwise, other EWP Hosts may not be able to recognise your HEIs.
                                                 </xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
@@ -154,11 +154,22 @@
                                                         <xs:attribute name="type" use="required">
                                                             <xs:annotation>
                                                                 <xs:documentation>
-                                                                    Identifier type. Common identifier types are provided in the enumeration.
+                                                                    Identifier type. Please use the types provided in the enumeration
+                                                                    (case sensitive!).
                                                                 </xs:documentation>
                                                             </xs:annotation>
                                                             <xs:simpleType>
                                                                 <xs:restriction base="xs:string">
+                                                                    <xs:enumeration value="previous-schac">
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>
+                                                                                A previously used SCHAC identifier. You MUST provide all SCHAC identifiers
+                                                                                you might have used in the past.
+
+                                                                                https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/4
+                                                                            </xs:documentation>
+                                                                        </xs:annotation>
+                                                                    </xs:enumeration>
                                                                     <xs:enumeration value="pic">
                                                                         <xs:annotation>
                                                                             <xs:documentation>

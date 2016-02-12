@@ -21,6 +21,10 @@ Backward-incompatible changes:
   and reasoning can be found
   [here](https://github.com/erasmus-without-paper/ewp-specs-architecture/issues/6).
 
+* EWP Hosts are now required to keep track of SCHAC ID changes (they must
+  publish previous SCHAC IDs in the manifest file). Details and reasoning can
+  be found [here](https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/4).
+
 Other changes:
 
 * The `ApiEntry/dev-notes` element was missing a type (`MultilineString` was
