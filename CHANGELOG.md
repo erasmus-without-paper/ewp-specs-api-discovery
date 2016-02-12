@@ -21,6 +21,11 @@ Backward-incompatible changes:
   and reasoning can be found
   [here](https://github.com/erasmus-without-paper/ewp-specs-architecture/issues/6).
 
+Other changes:
+
+* The `ApiEntry/dev-notes` element was missing a type (`MultilineString` was
+  added).
+
 
 1.0.1
 -----
