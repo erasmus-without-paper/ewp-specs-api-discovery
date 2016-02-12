@@ -16,6 +16,11 @@ Backward-incompatible changes:
   (https://github.com/erasmus-without-paper/ewp-specs-architecture/issues/2)
   for details.
 
+* A single EWP Host is now allowed to serve multiple versions of a single API.
+  Elements in `<apis-implemented>` are now `maxOccurs="unbounded"`. Details
+  and reasoning can be found
+  [here](https://github.com/erasmus-without-paper/ewp-specs-architecture/issues/6).
+
 
 1.0.1
 -----
