@@ -4,8 +4,8 @@ Release notes
 This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
-Next version (2.0.0, unreleased)
---------------------------------
+2.0.0
+-----
 
 Backward-incompatible changes:
 
