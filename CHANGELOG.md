@@ -5,8 +5,8 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
-Next version (1.0.1? unreleased)
---------------------------------
+1.0.1
+-----
 
 * Fixed links and XML namespaces
   ([details] (https://github.com/erasmus-without-paper/general-issues/issues/4)).
