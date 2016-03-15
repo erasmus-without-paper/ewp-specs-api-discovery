@@ -25,6 +25,9 @@ Backward-incompatible changes:
   publish previous SCHAC IDs in the manifest file). Details and reasoning can
   be found [here](https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/4).
 
+* `SHA-1` hashes replaced with `SHA-256` ([reasoning]
+  (https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/2)).
+
 Other changes:
 
 * The `ApiEntry/dev-notes` element was missing a type (`MultilineString` was

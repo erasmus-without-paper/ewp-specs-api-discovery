@@ -466,7 +466,7 @@
                 <xs:attribute name="fingerprint" use="optional">
                     <xs:annotation>
                         <xs:documentation>
-                            X.509 certificate's SHA-1 thumbprint. This attribute is optional, the
+                            X.509 certificate's SHA-256 thumbprint. This attribute is optional, the
                             Registry Service can compute it on itself.
                         </xs:documentation>
                     </xs:annotation>
