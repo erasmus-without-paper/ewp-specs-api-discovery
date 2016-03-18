@@ -2,6 +2,7 @@
 <xs:schema
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:ewp="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
     elementFormDefault="qualified"
 
     targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v2"
@@ -10,6 +11,11 @@
     <xs:import
         schemaLocation="http://www.w3.org/2001/03/xml.xsd"
         namespace="http://www.w3.org/XML/1998/namespace"
+    />
+
+    <xs:import
+        schemaLocation="https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-architecture/stable-v1/common-types.xsd"
+        namespace="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
     />
 
     <xs:annotation>
@@ -34,7 +40,7 @@
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="dev-email" minOccurs="0" maxOccurs="unbounded" type="Email">
+                <xs:element name="dev-email" minOccurs="0" maxOccurs="unbounded" type="ewp:Email">
                     <xs:annotation>
                         <xs:documentation>
                             RECOMMENDED element. Address of a developer (or server administrator) who may be
@@ -46,7 +52,7 @@
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element name="dev-notes" minOccurs="0" type="MultilineString">
+                <xs:element name="dev-notes" minOccurs="0" type="ewp:MultilineString">
                     <xs:annotation>
                         <xs:documentation>
                             Additional information provided by administrators and/or developers of this
@@ -200,7 +206,7 @@
                                                 </xs:simpleContent>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="name" type="StringWithOptionalLang" maxOccurs="unbounded">
+                                        <xs:element name="name" type="ewp:StringWithOptionalLang" maxOccurs="unbounded">
                                             <xs:annotation>
                                                 <xs:documentation>
                                                     The name of the institution. May be provided in multiple languages.
@@ -301,7 +307,7 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="dev-email" minOccurs="0" maxOccurs="unbounded" type="Email">
+            <xs:element name="dev-email" minOccurs="0" maxOccurs="unbounded" type="ewp:Email">
                 <xs:annotation>
                     <xs:documentation>
                         RECOMMENDED element. Address of a developer (or server administrator) who may
@@ -310,7 +316,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="dev-notes" minOccurs="0" type="MultilineString">
+            <xs:element name="dev-notes" minOccurs="0" type="ewp:MultilineString">
                 <xs:annotation>
                     <xs:documentation>
                         Additional information provided by host developers for the client developers.
@@ -397,63 +403,6 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-
-    <xs:complexType name="StringWithOptionalLang">
-        <xs:annotation>
-            <xs:documentation>
-                A string with an optional (but RECOMMENDED) xml:lang attribute. It is used in
-                places where a name of some entity can be provided in multiple languages.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:string">
-                <xs:attribute ref="xml:lang" use="optional" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-
-    <xs:complexType name="MultilineString">
-        <xs:annotation>
-            <xs:documentation>
-                This is very similar to a regular xs:string, but whenever this type is used it
-                indicates that the content MAY contain basic whitespace formatting, such us
-                line breaks and double line breaks (for spliting paragraphs). The values still
-                MUST be in plaintext though (no HTML is allowed).
-
-                Clients which process data of this type MUST respect line break when they
-                display the data to the end user (replace CRs and LFs with &lt;br&gt;s).
-            </xs:documentation>
-        </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:string"/>
-        </xs:simpleContent>
-    </xs:complexType>
-
-    <xs:complexType name="MultilineStringWithOptionalLang">
-        <xs:annotation>
-            <xs:documentation>
-                A multiline string (as defined in the MultilineString) with an optional (but
-                RECOMMENDED) xml:lang attribute. It is used in places where a description of
-                some entity can be provided in multiple languages.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="MultilineString">
-                <xs:attribute ref="xml:lang" use="optional" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-
-    <xs:simpleType name="Email">
-        <xs:annotation>
-            <xs:documentation>
-                A simple pattern for email address.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[^@]+@[^\.]+\..+"></xs:pattern>
-        </xs:restriction>
-    </xs:simpleType>
 
     <xs:complexType name="X509Certificate">
         <xs:annotation>
