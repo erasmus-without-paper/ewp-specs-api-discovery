@@ -9,7 +9,7 @@ starting from its first released version.
 
 Backward-incompatible changes:
 
-* The `<client-certificates-in-use>` element has be renamed to
+* The `<client-certificates-in-use>` element has been renamed to
   `<client-credentials-in-use>`.
 
 * The `<common-name>` element was removed. [Click here]
