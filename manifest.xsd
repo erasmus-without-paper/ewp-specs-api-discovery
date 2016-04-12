@@ -2,14 +2,20 @@
 <xs:schema
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:ewp="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
     elementFormDefault="qualified"
 
-    targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v1"
-    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v1"
+    targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v2"
+    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v2"
 >
     <xs:import
         schemaLocation="http://www.w3.org/2001/03/xml.xsd"
         namespace="http://www.w3.org/XML/1998/namespace"
+    />
+
+    <xs:import
+        schemaLocation="https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-architecture/stable-v1/common-types.xsd"
+        namespace="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
     />
 
     <xs:annotation>
@@ -34,7 +40,7 @@
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="dev-email" minOccurs="0" maxOccurs="unbounded" type="Email">
+                <xs:element name="dev-email" minOccurs="0" maxOccurs="unbounded" type="ewp:Email">
                     <xs:annotation>
                         <xs:documentation>
                             RECOMMENDED element. Address of a developer (or server administrator) who may be
@@ -46,7 +52,7 @@
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element name="dev-notes" minOccurs="0" type="MultilineString">
+                <xs:element name="dev-notes" minOccurs="0" type="ewp:MultilineString">
                     <xs:annotation>
                         <xs:documentation>
                             Additional information provided by administrators and/or developers of this
@@ -60,23 +66,27 @@
                     <xs:annotation>
                         <xs:documentation>
                             This section describes all APIs which have been implemented by this EWP host.
+
+                            Please note, that each API can be implemented a multiple number of times.
+                            Usually, you will have only a single entry for each of your APIs, but there are
+                            some use cases when serving two or more different versions of the same API is
+                            desirable. More background and discussion here:
+                            https://github.com/erasmus-without-paper/ewp-specs-architecture/issues/6
                         </xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="discovery" type="DiscoveryApiEntry">
+                            <xs:element name="discovery" type="DiscoveryApiEntry" maxOccurs="unbounded">
                                 <xs:annotation>
                                     <xs:documentation>
-                                        If this element is present, then the host states that it implements the
-                                        EWP Discovery API (which means that it hosts a manifest file you are reading
-                                        about just now).
-
-                                        The Discovery API is the only API that is required. Implementing it is one of
-                                        the requirements of becoming an EWP Host.
+                                        If this element is present, then the host states that it implements the EWP
+                                        Discovery API (which means that it hosts a manifest file you are reading about
+                                        just now). Implementing Discovery API is mandatory (hence, this element is a
+                                        required one).
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="echo" minOccurs="0" type="EchoApiEntry">
+                            <xs:element name="echo" type="EchoApiEntry" minOccurs="0" maxOccurs="unbounded">
                                 <xs:annotation>
                                     <xs:documentation>
                                         If this element is present, then the host states that it implements the
@@ -86,7 +96,7 @@
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="registry" minOccurs="0" type="RegistryApiEntry">
+                            <xs:element name="registry" type="RegistryApiEntry" minOccurs="0" maxOccurs="unbounded">
                                 <xs:annotation>
                                     <xs:documentation>
                                         If this element is present, then the host states that it implements the
@@ -118,6 +128,12 @@
                             Enlisting an institution here indicates that the host wants to receive queries
                             regarding this institution and will be able to understand them. If this list is
                             empty then the host is likely to not receive any queries at all.
+
+                            Be advised, that the Registry Service MAY ignore some (or all) of the items
+                            submitted here, for example if it finds that some institutions are already
+                            covered by a different EWP Host. If, for some reason, your items are not being
+                            imported, and you're not sure why, please contact the Registry Service
+                            maintainers.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
@@ -133,9 +149,9 @@
                                         <xs:element name="other-id" minOccurs="0" maxOccurs="unbounded">
                                             <xs:annotation>
                                                 <xs:documentation>
-                                                    SCHAC identifier provided in the attribute is the primary HEI identifier, but
-                                                    you SHOULD provide all the identifiers you can. Otherwise, other EWP Hosts may
-                                                    not be able to recognise your HEIs.
+                                                    SCHAC identifier (provided in the `id` attribute described below) is the
+                                                    primary HEI identifier, but you SHOULD provide all the identifiers you can.
+                                                    Otherwise, other EWP Hosts may not be able to recognise your HEIs.
                                                 </xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
@@ -144,11 +160,22 @@
                                                         <xs:attribute name="type" use="required">
                                                             <xs:annotation>
                                                                 <xs:documentation>
-                                                                    Identifier type. Common identifier types are provided in the enumeration.
+                                                                    Identifier type. Please use the types provided in the enumeration
+                                                                    (case sensitive!).
                                                                 </xs:documentation>
                                                             </xs:annotation>
                                                             <xs:simpleType>
                                                                 <xs:restriction base="xs:string">
+                                                                    <xs:enumeration value="previous-schac">
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>
+                                                                                A previously used SCHAC identifier. You MUST provide all SCHAC identifiers
+                                                                                you might have used in the past.
+
+                                                                                https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/4
+                                                                            </xs:documentation>
+                                                                        </xs:annotation>
+                                                                    </xs:enumeration>
                                                                     <xs:enumeration value="pic">
                                                                         <xs:annotation>
                                                                             <xs:documentation>
@@ -179,7 +206,7 @@
                                                 </xs:simpleContent>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="name" type="StringWithOptionalLang" maxOccurs="unbounded">
+                                        <xs:element name="name" type="ewp:StringWithOptionalLang" maxOccurs="unbounded">
                                             <xs:annotation>
                                                 <xs:documentation>
                                                     The name of the institution. May be provided in multiple languages.
@@ -207,35 +234,25 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="client-certificates-in-use" minOccurs="0">
+                <xs:element name="client-credentials-in-use" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>
-                            The list of SSL *client* certificates used by this host to make requests to
+                            The list of client credentials used by this host to make requests to
                             other EWP hosts.
 
-                            You should provide at least one certificate (or its common-name) if you intend
-                            to perform requests within EWP Network. However, having no client certificates
-                            is also valid (if you want your EWP Host to be "server only").
+                            You should have this element present if you intend to perform requests within
+                            the EWP Network. However, it's worth noting, that not having it is also valid
+                            (if you want your EWP Host to be "server only").
 
-                            More about security: http://developers.erasmuswithoutpaper.eu/
+                            Be advised, that the Registry Service MAY ignore some (or all) of the
+                            credentials submitted here, for example if it finds they do not meet proper
+                            security standards. If, for some reason, your credentials are not being
+                            imported, and you're not sure why, please contact the Registry Service
+                            administrators.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="common-name" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        This element indicates that the host's clients will be using a trusted
-                                        certificate(s) bound to a subject who's common name (CN) will be EXACTLY EQUAL
-                                        to the value provided by this element. E.g. "*.uw.edu.pl".
-
-                                        Please note that such certificates need to be signed by a trusted CA. Clients
-                                        MAY use the same certificates which your servers do.
-
-                                        You MAY provide multiple common-name elements.
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
                             <xs:element name="certificate" type="X509Certificate" minOccurs="0" maxOccurs="unbounded">
                                 <xs:annotation>
                                     <xs:documentation>
@@ -244,10 +261,10 @@
                                         Having self-signed certificates installed in developers' browsers might make
                                         development and debugging significantly easier (it will allow developers to
                                         make EWP requests directly in their browsers). However, it is NOT RECOMMENDED
-                                        to use them in production environment (use &lt;common-name&gt; elements
-                                        instead).
+                                        to use them in production environment.
 
-                                        You MAY provide multiple certificate elements.
+                                        IMPORTANT SECURITY NOTE: If your private key is compromised, you MUST
+                                        immediatelly remove all certificates based on this key from your manifest.
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
@@ -290,16 +307,16 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="dev-email" minOccurs="0" maxOccurs="unbounded" type="Email">
+            <xs:element name="dev-email" minOccurs="0" maxOccurs="unbounded" type="ewp:Email">
                 <xs:annotation>
                     <xs:documentation>
                         RECOMMENDED element. Address of a developer (or server administrator) who may
                         be contacted in case of problems *with this particular API* (e.g. malformed
-                        responses, etc.). Multiple addresses may be provided.
+                        responses, etc.). Multiple `dev-email` elements may be provided.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="dev-notes" minOccurs="0">
+            <xs:element name="dev-notes" minOccurs="0" type="ewp:MultilineString">
                 <xs:annotation>
                     <xs:documentation>
                         Additional information provided by host developers for the client developers.
@@ -324,7 +341,7 @@
                     you want to let other clients know that you have implemented them).
 
                     Use `0.0.0` if you're implementing a draft API, which has not been officially
-                    released yet and doesn't yet have a version number.
+                    released yet and doesn't have any version number yet.
                 </xs:documentation>
             </xs:annotation>
             <xs:simpleType>
@@ -387,63 +404,6 @@
         </xs:complexContent>
     </xs:complexType>
 
-    <xs:complexType name="StringWithOptionalLang">
-        <xs:annotation>
-            <xs:documentation>
-                A string with an optional (but RECOMMENDED) xml:lang attribute. It is used in
-                places where a name of some entity can be provided in multiple languages.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:string">
-                <xs:attribute ref="xml:lang" use="optional" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-
-    <xs:complexType name="MultilineString">
-        <xs:annotation>
-            <xs:documentation>
-                This is very similar to a regular xs:string, but whenever this type is used it
-                indicates that the content MAY contain basic whitespace formatting, such us
-                line breaks and double line breaks (for spliting paragraphs). The values still
-                MUST be in plaintext though (no HTML is allowed).
-
-                Clients which process data of this type MUST respect line break when they
-                display the data to the end user (replace CRs and LFs with &lt;br&gt;s).
-            </xs:documentation>
-        </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:string"/>
-        </xs:simpleContent>
-    </xs:complexType>
-
-    <xs:complexType name="MultilineStringWithOptionalLang">
-        <xs:annotation>
-            <xs:documentation>
-                A multiline string (as defined in the MultilineString) with an optional (but
-                RECOMMENDED) xml:lang attribute. It is used in places where a description of
-                some entity can be provided in multiple languages.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="MultilineString">
-                <xs:attribute ref="xml:lang" use="optional" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-
-    <xs:simpleType name="Email">
-        <xs:annotation>
-            <xs:documentation>
-                A simple pattern for email address.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[^@]+@[^\.]+\..+"></xs:pattern>
-        </xs:restriction>
-    </xs:simpleType>
-
     <xs:complexType name="X509Certificate">
         <xs:annotation>
             <xs:documentation>
@@ -455,8 +415,8 @@
                 <xs:attribute name="fingerprint" use="optional">
                     <xs:annotation>
                         <xs:documentation>
-                            X.509 certificate's SHA-1 thumbprint. This attribute is optional in Manifest
-                            files. If missing, the Registry Service will compute it properly.
+                            X.509 certificate's SHA-256 thumbprint. This attribute is optional, the
+                            Registry Service can compute it on itself.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:simpleType>

@@ -4,6 +4,35 @@ Release notes
 This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
+2.0.0
+-----
+
+Backward-incompatible changes:
+
+* The `<client-certificates-in-use>` element has been renamed to
+  `<client-credentials-in-use>`.
+
+* The `<common-name>` element was removed. [Click here]
+  (https://github.com/erasmus-without-paper/ewp-specs-architecture/issues/2)
+  for details.
+
+* A single EWP Host is now allowed to serve multiple versions of a single API.
+  Elements in `<apis-implemented>` are now `maxOccurs="unbounded"`. Details
+  and reasoning can be found
+  [here](https://github.com/erasmus-without-paper/ewp-specs-architecture/issues/6).
+
+* EWP Hosts are now required to keep track of SCHAC ID changes (they must
+  publish previous SCHAC IDs in the manifest file). Details and reasoning can
+  be found [here](https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/4).
+
+* `SHA-1` hashes replaced with `SHA-256` ([reasoning]
+  (https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/2)).
+
+Other changes:
+
+* The `ApiEntry/dev-notes` element was missing a type (`MultilineString` was
+  added).
+
 
 1.0.1
 -----
