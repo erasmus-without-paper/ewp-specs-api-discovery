@@ -275,28 +275,6 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:simpleType name="HTTP-or-HTTPS">
-        <xs:annotation>
-            <xs:documentation>
-                Any HTTP URL (secure HTTPS is also accepted).
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:anyURI">
-            <xs:pattern value="https?://.+" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="HTTPS">
-        <xs:annotation>
-            <xs:documentation>
-                Secure (HTTPS) URL.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:anyURI">
-            <xs:pattern value="https://.+" />
-        </xs:restriction>
-    </xs:simpleType>
-
     <xs:complexType name="ApiEntry">
         <xs:annotation>
             <xs:documentation>
@@ -356,7 +334,7 @@
         <xs:complexContent>
             <xs:extension base="ApiEntry">
                 <xs:sequence>
-                    <xs:element name="url" type="HTTPS">
+                    <xs:element name="url" type="ewp:HTTPS">
                         <xs:annotation>
                             <xs:documentation>
                                 An URL at which the Discovery Manifest can be found.
@@ -376,7 +354,7 @@
         <xs:complexContent>
             <xs:extension base="ApiEntry">
                 <xs:sequence>
-                    <xs:element name="url" type="HTTPS">
+                    <xs:element name="url" type="ewp:HTTPS">
                         <xs:annotation>
                             <xs:documentation>
                                 An URL at which the EWP Echo API is implemented.
@@ -392,7 +370,7 @@
         <xs:complexContent>
             <xs:extension base="ApiEntry">
                 <xs:sequence>
-                    <xs:element name="catalogue-url" type="HTTPS">
+                    <xs:element name="catalogue-url" type="ewp:HTTPS">
                         <xs:annotation>
                             <xs:documentation>
                                 An URL at which the Registry's catalogue can be found.
