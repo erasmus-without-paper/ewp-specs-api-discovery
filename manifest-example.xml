@@ -1,52 +1,51 @@
 <manifest
     xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v3"
-    xmlns:m="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v3"
+    xmlns:ewp="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="
         https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v3
         https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-api-discovery/stable-v3/manifest.xsd
 
+        https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd
+        https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-architecture/stable-v1/common-types.xsd
+
         https://github.com/erasmus-without-paper/ewp-specs-api-echo/blob/master/manifest-entry.xsd
         https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-api-echo/master/manifest-entry.xsd
-
-        https://github.com/erasmus-without-paper/ewp-specs-api-departments/blob/master/manifest-entry.xsd
-        https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-api-departments/master/manifest-entry.xsd
     "
 >
-    <dev-email>admin1@example.com</dev-email>
-    <dev-notes>It's not a real manifest. Just an example.</dev-notes>
-    <apis-implemented>
+    <!-- This example doesn't contain many comments, but its XML Schema does! -->
 
+    <ewp:dev-email>admin-or-developer@example.com</ewp:dev-email>
+    <ewp:dev-notes>It's not a real manifest. Just an example.</ewp:dev-notes>
+
+    <apis-implemented>
         <!-- The entry for the Discovery Manifest API is defined in the manifest's
         own XML namespace. -->
-
         <discovery version="3.0.0">
-            <ewp:dev-email>admin2@example.com</ewp:dev-email>
-            <ewp:dev-email>admin3@example.com</ewp:dev-email>
             <url>https://example.com/manifest.xml</url>
         </discovery>
 
         <!-- All other manifest entries are defined in their own XML namespaces.
-        We need to use proper `xmlns` in order for them to be matched properly. -->
-
+        You need to use proper `xmlns` in order for them to be matched properly. -->
         <echo
             xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-echo/blob/master/manifest-entry.xsd"
-            ewp:version="0.0.0"
+            version="0.0.0"
         >
-            <ewp:dev-email>admin4@example.com</ewp:dev-email>
-            <ewp:dev-notes>Notes may be supplied in API-context too.</ewp:dev-notes>
+            <!-- Note, that ewp:dev-email and ewp:dev-notes can be defined both on the
+            global level, and on the API level. -->
+            <ewp:dev-email>usually-a-developer@example.com</ewp:dev-email>
+            <ewp:dev-email>some-other-developer@example.com</ewp:dev-email>
+            <ewp:dev-notes>Some notes which might useful for client developers.</ewp:dev-notes>
+
+            <!-- This element is defined by the Echo API (in its manifest-entry.xsd file).
+            Most APIs will require you to provide the `version` attribute and a single `url`
+            element only, but it's NOT a rule. Some APIs may require you to provide completely
+            other properties (which should be described in their manifest-entry.xsd file). -->
             <url>https://example.com/ewp/echo</url>
         </echo>
-
-        <departments
-            xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-departments/blob/master/manifest-entry.xsd"
-            ewp:version="0.0.0"
-        >
-            <url>https://example.com/ewp/departments</url>
-        </departments>
-
     </apis-implemented>
+
     <institutions-covered>
         <hei id="uw.edu.pl">
             <other-id type="pic">999572294</other-id>
@@ -54,6 +53,7 @@
             <name xml:lang="en">University of Warsaw</name>
         </hei>
     </institutions-covered>
+
     <client-credentials-in-use>
         <certificate>
             MIIB9TCCAV4CCQDzcL/uks2ttjANBgkqhkiG9w0BAQUFADA/MQswCQYDVQQGEwJOTzETMBEGA1UE
