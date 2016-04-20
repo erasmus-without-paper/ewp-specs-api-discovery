@@ -7,21 +7,19 @@ starting from its first released version.
 3.0.0
 -----
 
-Only one change, but still backward-incompatible (so a new major release was
-needed).
+Backward-incompatible changes:
 
-Definitions of `<echo>` and `<registry>` API entries have been removed from the
-manifest's XML namespace. From now on, each API will be described in *its
-own* XML namespace (so that its documentation will be present only in its own
-repository).
+* Definitions of `<echo>` and `<registry>` API entries have been removed from
+  the manifest's XML namespace. From now on, each API will be described in *its
+  own* `manifest-entry.xsd` XML namespace (so that its documentation will be
+  present only in its own repository). See [this issue]
+  (https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/6)
+  for rationale.
 
-Also, some elements were moved to the [common-types]
-(https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd)
-namespace.
-
-See [this issue]
-(https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/6)
-for rationale.
+* The above change would render `<dev-email>` and `<dev-notes>` elements to be
+  duplicated in two separate namespaces, so - to keep it clean - they were
+  moved to the [common-types namespace]
+  (https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd).
 
 
 2.0.0
