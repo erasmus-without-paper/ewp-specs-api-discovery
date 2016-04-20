@@ -5,8 +5,8 @@
     xmlns:ewp="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
     elementFormDefault="qualified"
 
-    targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v2"
-    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v2"
+    targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v3"
+    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v3"
 >
     <xs:import
         schemaLocation="http://www.w3.org/2001/03/xml.xsd"
@@ -76,7 +76,7 @@
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="discovery" type="DiscoveryApiEntry" maxOccurs="unbounded">
+                            <xs:element name="discovery" maxOccurs="unbounded">
                                 <xs:annotation>
                                     <xs:documentation>
                                         If this element is present, then the host states that it implements the EWP
@@ -85,35 +85,37 @@
                                         required one).
                                     </xs:documentation>
                                 </xs:annotation>
-                            </xs:element>
-                            <xs:element name="echo" type="EchoApiEntry" minOccurs="0" maxOccurs="unbounded">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        If this element is present, then the host states that it implements the
-                                        EWP Echo API described here:
+                                <xs:complexType>
+                                    <xs:complexContent>
+                                        <xs:extension base="ewp:ManifestApiEntryBase">
+                                            <xs:sequence>
+                                                <xs:element name="url" type="ewp:HTTPS">
+                                                    <xs:annotation>
+                                                        <xs:documentation>
+                                                            An URL at which the Discovery Manifest can be found.
 
-                                        https://github.com/erasmus-without-paper/ewp-specs-api-echo
-                                    </xs:documentation>
-                                </xs:annotation>
+                                                            This URL MUST match the URL submitted to the EWP Registry. Currently, you
+                                                            cannot move your Manifest to other location simply by updating this element -
+                                                            you'll need to contact the EWP Registry maintainers to do that.
+                                                        </xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:extension>
+                                    </xs:complexContent>
+                                </xs:complexType>
                             </xs:element>
-                            <xs:element name="registry" type="RegistryApiEntry" minOccurs="0" maxOccurs="unbounded">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        If this element is present, then the host states that it implements the
-                                        Registry API described here:
-
-                                        https://github.com/erasmus-without-paper/ewp-specs-api-registry
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-
                             <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded" processContents="strict">
                                 <xs:annotation>
                                     <xs:documentation>
+                                        Manifest entries for each of the APIs are defined in separate schemas, within
+                                        repositories describing these APIs (usually in a file named `manifest-entry.xsd`).
+
                                         We allow for the manifest to describe external APIs too (unrelated to the EWP
                                         Project, but compatible with the EWP Network). It is RECOMMENDED that all such
                                         APIs are documented in a similar fashion to the one used within the EWP
-                                        Project.
+                                        Project (and their manifest entries SHOULD extend the `ApiEntry` complexType
+                                        defined below, but it not required).
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:any>
@@ -253,7 +255,7 @@
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="certificate" type="X509Certificate" minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="certificate" minOccurs="0" maxOccurs="unbounded">
                                 <xs:annotation>
                                     <xs:documentation>
                                         Base64-encoded X.509 certificate. This MAY be a self-signed certificate.
@@ -267,6 +269,30 @@
                                         immediatelly remove all certificates based on this key from your manifest.
                                     </xs:documentation>
                                 </xs:annotation>
+                                <xs:complexType>
+                                    <xs:annotation>
+                                        <xs:documentation>
+                                            Base64-encoded X.509 certificate.
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:base64Binary">
+                                            <xs:attribute name="fingerprint" use="optional">
+                                                <xs:annotation>
+                                                    <xs:documentation>
+                                                        X.509 certificate's SHA-256 thumbprint. This attribute is optional, the
+                                                        Registry Service can compute it on itself.
+                                                    </xs:documentation>
+                                                </xs:annotation>
+                                                <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                        <xs:pattern value="[0-9a-f]{40}"/>
+                                                    </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:attribute>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
                             </xs:element>
                         </xs:sequence>
                     </xs:complexType>
@@ -275,135 +301,4 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="ApiEntry">
-        <xs:annotation>
-            <xs:documentation>
-                A common base type for children of the `apis-implemented` element.
-
-                Clients MUST NOT assume that all children of `apis-implemented` will "inherit"
-                these properties.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:sequence>
-            <xs:element name="dev-email" minOccurs="0" maxOccurs="unbounded" type="ewp:Email">
-                <xs:annotation>
-                    <xs:documentation>
-                        RECOMMENDED element. Address of a developer (or server administrator) who may
-                        be contacted in case of problems *with this particular API* (e.g. malformed
-                        responses, etc.). Multiple `dev-email` elements may be provided.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="dev-notes" minOccurs="0" type="ewp:MultilineString">
-                <xs:annotation>
-                    <xs:documentation>
-                        Additional information provided by host developers for the client developers.
-
-                        E.g. "We are currently not delivering &lt;description&gt; elements because our
-                        model is incompatible with the `1.1.3` schema. We will start to deliver them
-                        once we upgrade to the `1.2.0` schema."
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-        </xs:sequence>
-        <xs:attribute name="version">
-            <xs:annotation>
-                <xs:documentation>
-                    The API version number the host claims its implementation of this API conforms
-                    to. Host implementers MUST make sure that this number is kept in sync with their
-                    implementations.
-
-                    E.g. If you have used the `1.1.3` release of some API when you have implemented
-                    your endpoint, then you SHOULD put `1.1.3` here. If you put `1.2.0` here later
-                    on, then it means that you have just implemented some new `1.2.0` features (and
-                    you want to let other clients know that you have implemented them).
-
-                    Use `0.0.0` if you're implementing a draft API, which has not been officially
-                    released yet and doesn't have any version number yet.
-                </xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-                <xs:restriction base="xs:string">
-                    <xs:pattern value="[0-9]+\.[0-9]+\.[0-9]+"/>
-                </xs:restriction>
-            </xs:simpleType>
-        </xs:attribute>
-    </xs:complexType>
-
-    <xs:complexType name="DiscoveryApiEntry">
-        <xs:complexContent>
-            <xs:extension base="ApiEntry">
-                <xs:sequence>
-                    <xs:element name="url" type="ewp:HTTPS">
-                        <xs:annotation>
-                            <xs:documentation>
-                                An URL at which the Discovery Manifest can be found.
-
-                                This URL MUST match the URL submitted to the EWP Registry. Currently, you
-                                cannot move your Manifest to other location simply by updating this element -
-                                you'll need to contact the EWP Registry maintainers to do that.
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="EchoApiEntry">
-        <xs:complexContent>
-            <xs:extension base="ApiEntry">
-                <xs:sequence>
-                    <xs:element name="url" type="ewp:HTTPS">
-                        <xs:annotation>
-                            <xs:documentation>
-                                An URL at which the EWP Echo API is implemented.
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="RegistryApiEntry">
-        <xs:complexContent>
-            <xs:extension base="ApiEntry">
-                <xs:sequence>
-                    <xs:element name="catalogue-url" type="ewp:HTTPS">
-                        <xs:annotation>
-                            <xs:documentation>
-                                An URL at which the Registry's catalogue can be found.
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="X509Certificate">
-        <xs:annotation>
-            <xs:documentation>
-                Base64-encoded X.509 certificate.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="xs:base64Binary">
-                <xs:attribute name="fingerprint" use="optional">
-                    <xs:annotation>
-                        <xs:documentation>
-                            X.509 certificate's SHA-256 thumbprint. This attribute is optional, the
-                            Registry Service can compute it on itself.
-                        </xs:documentation>
-                    </xs:annotation>
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:pattern value="[0-9a-f]{40}"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:attribute>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
 </xs:schema>

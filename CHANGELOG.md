@@ -4,6 +4,22 @@ Release notes
 This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
+3.0.0 (unreleased yet)
+----------------------
+
+Only one change, but still backward-incompatible (so a new major release was
+needed).
+
+Definitions of `<echo>` and `<registry>` API entries have been removed from the
+manifest's XML namespace. From now on, each API will be described in *its
+own* XML namespace (so that its documentation will be present only in its own
+repository).
+
+See [this issue]
+(https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/6)
+for rationale.
+
+
 2.0.0
 -----
 
