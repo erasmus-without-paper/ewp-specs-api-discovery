@@ -16,8 +16,8 @@
 >
     <!-- This example doesn't contain many comments, but its XML Schema does! -->
 
-    <ewp:dev-email>admin-or-developer@example.com</ewp:dev-email>
-    <ewp:dev-notes>It's not a real manifest. Just an example.</ewp:dev-notes>
+    <ewp:admin-email>admin-or-developer@example.com</ewp:admin-email>
+    <ewp:admin-notes>It's not a real manifest. Just an example.</ewp:admin-notes>
 
     <apis-implemented>
         <!-- The entry for the Discovery Manifest API is defined in the manifest's
@@ -32,11 +32,11 @@
             xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-echo/blob/master/manifest-entry.xsd"
             version="0.0.0"
         >
-            <!-- Note, that ewp:dev-email and ewp:dev-notes can be defined both on the
+            <!-- Note, that ewp:admin-email and ewp:admin-notes can be defined both on the
             global level, and on the API level. -->
-            <ewp:dev-email>usually-a-developer@example.com</ewp:dev-email>
-            <ewp:dev-email>some-other-developer@example.com</ewp:dev-email>
-            <ewp:dev-notes>Some notes which might useful for client developers.</ewp:dev-notes>
+            <ewp:admin-email>usually-a-developer@example.com</ewp:admin-email>
+            <ewp:admin-email>some-other-developer@example.com</ewp:admin-email>
+            <ewp:admin-notes>Some notes which might useful for client developers.</ewp:admin-notes>
 
             <!-- This element is defined by the Echo API (in its manifest-entry.xsd file).
             Most APIs will require you to provide the `version` attribute and a single `url`

@@ -10,6 +10,10 @@ starting from its first released version.
 * Unknown API entries are no longer strictly validated ([more information]
   (https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/9)).
 
+* `<dev-email>` and `<dev-notes>` elements were renamed to `<admin-email>` and
+  `<admin-notes>` respectively ([more information]
+  (https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/8)).
+
 
 3.0.0
 -----

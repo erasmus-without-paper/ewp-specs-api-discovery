@@ -40,19 +40,19 @@
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="ewp:dev-email" minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="ewp:admin-email" minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
                         <xs:documentation>
-                            RECOMMENDED element. Address of a developer (or server administrator) who may be
+                            RECOMMENDED element. Address of a developer or server administrator who may be
                             contacted in case of problems (e.g. invalid Manifest file, invalid certificates,
                             server errors, etc.). Multiple addresses may be provided.
 
-                            Please note, that additional `dev-email` elements can also be included inside
+                            Please note, that additional `admin-email` elements can also be included inside
                             specific APIs sections.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element ref="ewp:dev-notes" minOccurs="0">
+                <xs:element ref="ewp:admin-notes" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>
                             Additional information provided by administrators and/or developers of this
