@@ -4,6 +4,13 @@ Release notes
 This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
+3.1.0 (unreleased)
+------------------
+
+* Unknown API entries are no longer strictly validated ([more information]
+  (https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/9)).
+
+
 3.0.0
 -----
 

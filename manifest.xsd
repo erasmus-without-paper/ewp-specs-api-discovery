@@ -105,7 +105,7 @@
                                     </xs:complexContent>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded" processContents="strict">
+                            <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded" processContents="lax">
                                 <xs:annotation>
                                     <xs:documentation>
                                         Manifest entries for each of the APIs are defined in separate schemas, within
