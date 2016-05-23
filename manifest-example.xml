@@ -22,7 +22,7 @@
     <apis-implemented>
         <!-- The entry for the Discovery Manifest API is defined in the manifest's
         own XML namespace. -->
-        <discovery version="3.0.0">
+        <discovery version="3.1.0">
             <url>https://example.com/manifest.xml</url>
         </discovery>
 
