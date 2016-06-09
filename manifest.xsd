@@ -129,13 +129,13 @@
                                             <xs:attribute name="fingerprint" use="optional">
                                                 <xs:annotation>
                                                     <xs:documentation>
-                                                        X.509 certificate's SHA-256 thumbprint. This attribute is optional, the
-                                                        Registry Service can compute it on itself.
+                                                        DEPRECATED, you don't need to provide this attribute. X.509 certificate's
+                                                        SHA-256 thumbprint (in HEX).
                                                     </xs:documentation>
                                                 </xs:annotation>
                                                 <xs:simpleType>
                                                     <xs:restriction base="xs:string">
-                                                        <xs:pattern value="[0-9a-f]{40}"/>
+                                                        <xs:pattern value="[0-9a-f]{64}"/>
                                                     </xs:restriction>
                                                 </xs:simpleType>
                                             </xs:attribute>

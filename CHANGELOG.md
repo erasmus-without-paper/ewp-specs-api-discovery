@@ -4,6 +4,16 @@ Release notes
 This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
+3.2.0
+-----
+
+* `fingerprint` attribute of the `<certificate>` element has been marked as
+  deprecated (to be removed in a future major release). It's length has been
+  also corrected (SHA-256 hex digests have 64 characters, not 40).
+
+* Minor changes to the example manifest file (updated client certificate).
+
+
 3.1.0
 -----
 
