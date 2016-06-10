@@ -1,11 +1,16 @@
 <manifest
-    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v3"
+    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v4"
+    xmlns:mf="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v4"
     xmlns:ewp="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
+    xmlns:r="https://github.com/erasmus-without-paper/ewp-specs-api-registry/tree/stable-v1"
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="
-        https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v3
-        https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-api-discovery/stable-v3/manifest.xsd
+        https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v4
+        https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-api-discovery/stable-v4/manifest.xsd
+
+        https://github.com/erasmus-without-paper/ewp-specs-api-registry/tree/stable-v1
+        https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-api-registry/stable-v1/catalogue.xsd
 
         https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd
         https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-architecture/stable-v1/common-types.xsd
@@ -19,15 +24,19 @@
     <ewp:admin-email>admin-or-developer@example.com</ewp:admin-email>
     <ewp:admin-notes>It's not a real manifest. Just an example.</ewp:admin-notes>
 
-    <apis-implemented>
-        <!-- The entry for the Discovery Manifest API is defined in the manifest's
-        own XML namespace. -->
-        <discovery version="3.1.0">
+    <r:apis-implemented>
+        <!-- All API entries are defined in their own separate XML namespaces.
+        You need to use proper `xmlns` in order for them to be matched properly. -->
+
+        <!-- The entry for the Discovery Manifest API (a self-reference). -->
+        <discovery
+            xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-discovery/blob/stable-v4/manifest-entry.xsd"
+            version="4.0.0"
+        >
             <url>https://example.com/manifest.xml</url>
         </discovery>
 
-        <!-- All other manifest entries are defined in their own XML namespaces.
-        You need to use proper `xmlns` in order for them to be matched properly. -->
+        <!-- Some other API. -->
         <echo
             xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-echo/blob/master/manifest-entry.xsd"
             version="0.0.0"
@@ -44,15 +53,15 @@
             other properties (which should be described in their manifest-entry.xsd file). -->
             <url>https://example.com/ewp/echo</url>
         </echo>
-    </apis-implemented>
+    </r:apis-implemented>
 
-    <institutions-covered>
+    <mf:institutions-covered xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-registry/tree/stable-v1">
         <hei id="uw.edu.pl">
             <other-id type="pic">999572294</other-id>
             <other-id type="erasmus">PL WARSZAW01</other-id>
             <name xml:lang="en">University of Warsaw</name>
         </hei>
-    </institutions-covered>
+    </mf:institutions-covered>
 
     <client-credentials-in-use>
         <certificate>

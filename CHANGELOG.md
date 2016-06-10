@@ -4,6 +4,26 @@ Release notes
 This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
+
+4.0.0-RC1
+---------
+
+* `<apis-implemented>` and `<hei>` elements were moved to the Registry API's
+  XML namespace. Thanks to this change, the Registry's catalogue won't need to
+  reuse elements from Discovery API's XML namespace (which is a good thing,
+  because the latter one is more likely to change in a backward-incompatible
+  manner).
+
+* The deprecated `fingerprint` attribute of the `<certificate>` element was
+  removed.
+
+* For consistency, Discovery API's manifest entry has been moved to a separate
+  namespace (all other APIs currently keep it in a separate namespace too).
+
+* As with all major version changes, XML namespace identifiers were changed
+  (`stable-v3` was replaced with `stable-v4`).
+
+
 3.2.0
 -----
 
