@@ -15,8 +15,8 @@
         https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd
         https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-architecture/stable-v1/common-types.xsd
 
-        https://github.com/erasmus-without-paper/ewp-specs-api-echo/blob/master/manifest-entry.xsd
-        https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-api-echo/master/manifest-entry.xsd
+        https://github.com/erasmus-without-paper/ewp-specs-api-echo/blob/stable-v1/manifest-entry.xsd
+        https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-api-echo/stable-v1/manifest-entry.xsd
     "
 >
     <!-- This example doesn't contain many comments, but its XML Schema does! -->
@@ -38,8 +38,8 @@
 
         <!-- Some other API. -->
         <echo
-            xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-echo/blob/master/manifest-entry.xsd"
-            version="0.0.0"
+            xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-echo/blob/stable-v1/manifest-entry.xsd"
+            version="1.0.0"
         >
             <!-- Note, that ewp:admin-email and ewp:admin-notes can be defined both on the
             global level, and on the API level. -->
