@@ -5,8 +5,8 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
-4.0.0-RC1
----------
+4.0.0
+-----
 
 * `<apis-implemented>` and `<hei>` elements were moved to the Registry API's
   XML namespace. Thanks to this change, the Registry's catalogue won't need to
