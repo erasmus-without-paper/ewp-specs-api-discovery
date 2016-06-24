@@ -45,7 +45,7 @@
             global level, and on the API level. -->
             <ewp:admin-email>usually-a-developer@example.com</ewp:admin-email>
             <ewp:admin-email>some-other-developer@example.com</ewp:admin-email>
-            <ewp:admin-notes>Some notes which might useful for client developers.</ewp:admin-notes>
+            <ewp:admin-notes>Some notes which might be useful for client developers.</ewp:admin-notes>
 
             <!-- This element is defined by the Echo API (in its manifest-entry.xsd file).
             Most APIs will require you to provide the `version` attribute and a single `url`

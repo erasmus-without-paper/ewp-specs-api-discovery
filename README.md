@@ -57,7 +57,7 @@ Discovery Manifest File
 
  * Your Discovery API response MUST conform to the XML Schema provided in the
    attached [manifest.xsd](manifest.xsd) file.
-   
+
  * The [manifest-entry.xsd](manifest-entry.xsd) file describes a Discovery API
    entry to be placed within the `<apis-implemented>` section of the manifest
    file. This self-reference is required for completeness (since Discovery API
