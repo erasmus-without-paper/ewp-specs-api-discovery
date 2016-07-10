@@ -5,6 +5,14 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
+4.0.1
+-----
+
+* More details were added about `manifest-entry.xsd` files.
+* Some examples were added describing scenarios when one might want to split
+  his manifest file into a couple smaller ones.
+
+
 4.0.0
 -----
 
