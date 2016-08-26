@@ -10,7 +10,7 @@ starting from its first released version.
 
 * More details were added about `manifest-entry.xsd` files.
 * Some examples were added describing scenarios when one might want to split
-  his manifest file into a couple smaller ones.
+  his manifest file into a couple of smaller ones.
 
 
 4.0.0
