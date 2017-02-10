@@ -58,7 +58,7 @@
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element ref="ewp:admin-notes" minOccurs="0">
+                <xs:element ref="ewp:admin-notes" minOccurs="0" maxOccurs="1">
                     <xs:annotation>
                         <xs:documentation>
                             Additional information provided by administrators and/or developers of this
@@ -68,8 +68,8 @@
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element ref="r:apis-implemented" minOccurs="0"/>
-                <xs:element name="institutions-covered" minOccurs="0">
+                <xs:element ref="r:apis-implemented" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="institutions-covered" minOccurs="0" maxOccurs="1">
                     <xs:annotation>
                         <xs:documentation>
                             A list of HEIs (Higher Education Institutions) that are covered by this host.
@@ -91,7 +91,7 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="client-credentials-in-use" minOccurs="0">
+                <xs:element name="client-credentials-in-use" minOccurs="0" maxOccurs="1">
                     <xs:annotation>
                         <xs:documentation>
                             The list of client credentials used by this host to make requests to
