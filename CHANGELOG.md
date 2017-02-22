@@ -5,6 +5,13 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
+4.0.2
+-----
+
+* `minOccurs` and `maxOccurs` are now provided explicitly ([why?]
+  (https://github.com/erasmus-without-paper/general-issues/issues/22)).
+
+
 4.0.1
 -----
 
