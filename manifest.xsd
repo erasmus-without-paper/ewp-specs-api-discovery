@@ -38,19 +38,42 @@
             <xs:documentation>
                 EWP Discovery Manifest.
 
-                Defines a single EWP Host - a set of relationships between HEIs, APIs, server
-                administrators and client credentials. One EWP Host defines a single Cartesian
-                product of all these sets. (E.g. if a client certificate X and a HEI Y are
-                present in the same host, then it means that server which signs its requests
-                with X is allowed to request resources visible to HEI Y. Similar statement is
-                true for every other pair of sets.)
+                Manifest files describe a set of EWP Hosts. Manifest files are usually read by
+                the EWP Registry Service only.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="host" minOccurs="1" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            One v5 manifest file can describe multiple EWP Hosts (this is the primary
+                            difference between v4 and v5 of Discovery API).
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
-                Most partners will need exactly one manifest. However, in some cases, you might
-                need to have more than one. For example, when you server covers two HEIs, but
-                one of your APIs is available for only one of these two HEIs, then it's
-                impossible to describe such relationship with a single Cartesian product. You
-                will need to use a sum of at least two Cartesian products (which is expressed
-                by two `host` entries).
+    <xs:element name="host">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a single EWP Host.
+
+                EWP Host defines relationships between HEIs, APIs, server administrators and
+                client credentials. One EWP Host defines a single Cartesian product (a "join")
+                of all these sets. (E.g. if a client certificate X and a HEI Y is present in
+                the same host, then it means that server which signs its requests with X is
+                allowed to request resources visible to HEI Y. Similar statement is true for
+                every other pair of sets.)
+
+                Most partners will have exactly one `host` entry. However, in some cases you
+                might be needed to describe more than one. For example, when you server covers
+                two HEIs, but one of your APIs is available for only one of these two HEIs,
+                then it's impossible to describe such relationship with a single Cartesian
+                product. You will need to use a sum of at least two Cartesian products. (which
+                is expressed by two `host` entries).
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -63,8 +86,8 @@
                             server errors, etc.). Multiple addresses may be provided.
 
                             Please note, that additional `admin-email` elements can also be included inside
-                            specific APIs sections (this allows you to bind extra admins to specific APIs
-                            without the need of creating dedicated manifest files).
+                            specific APIs sections (this allows you to add extra admins to specific APIs
+                            without the need of creating extra `host` entries).
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
