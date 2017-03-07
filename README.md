@@ -20,6 +20,10 @@ going to use when fetching the data from the EWP Network.
 Server requirements
 -------------------
 
+Note, that this API doesn't currently follow rules of the *Authentication and
+Security* document (the one that most other APIs explicitly follow). It
+declares its own security requirements.
+
 In order to implement the Discovery API, you will need to:
 
  * Host the Discovery Manifest file (described below) somewhere on your
