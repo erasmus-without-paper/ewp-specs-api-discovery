@@ -8,8 +8,8 @@ starting from its first released version.
 4.0.2
 -----
 
-* `minOccurs` and `maxOccurs` are now provided explicitly ([why?]
-  (https://github.com/erasmus-without-paper/general-issues/issues/22)).
+* `minOccurs` and `maxOccurs` are now provided explicitly
+  ([why?](https://github.com/erasmus-without-paper/general-issues/issues/22)).
 
 
 4.0.1
@@ -52,12 +52,12 @@ starting from its first released version.
 3.1.0
 -----
 
-* Unknown API entries are no longer strictly validated ([more information]
-  (https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/9)).
+* Unknown API entries are no longer strictly validated
+  ([more information](https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/9)).
 
 * `<dev-email>` and `<dev-notes>` elements were renamed to `<admin-email>` and
-  `<admin-notes>` respectively ([more information]
-  (https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/8)).
+  `<admin-notes>` respectively
+  ([more information](https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/8)).
 
 
 3.0.0
@@ -68,14 +68,14 @@ Backward-incompatible changes:
 * Definitions of `<echo>` and `<registry>` API entries have been removed from
   the manifest's XML namespace. From now on, each API will be described in *its
   own* `manifest-entry.xsd` XML namespace (so that its documentation will be
-  present only in its own repository). See [this issue]
-  (https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/6)
+  present only in its own repository). See
+  [this issue](https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/6)
   for rationale.
 
 * The above change would render `<dev-email>` and `<dev-notes>` elements to be
   duplicated in two separate namespaces, so - to keep it clean - they were
-  moved to the [common-types namespace]
-  (https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd).
+  moved to the
+  [common-types namespace](https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd).
 
 
 2.0.0
@@ -86,8 +86,8 @@ Backward-incompatible changes:
 * The `<client-certificates-in-use>` element has been renamed to
   `<client-credentials-in-use>`.
 
-* The `<common-name>` element was removed. [Click here]
-  (https://github.com/erasmus-without-paper/ewp-specs-architecture/issues/2)
+* The `<common-name>` element was removed.
+  [Click here](https://github.com/erasmus-without-paper/ewp-specs-architecture/issues/2)
   for details.
 
 * A single EWP Host is now allowed to serve multiple versions of a single API.
@@ -99,8 +99,8 @@ Backward-incompatible changes:
   publish previous SCHAC IDs in the manifest file). Details and reasoning can
   be found [here](https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/4).
 
-* `SHA-1` hashes replaced with `SHA-256` ([reasoning]
-  (https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/2)).
+* `SHA-1` hashes replaced with `SHA-256`
+  ([reasoning](https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/2)).
 
 Other changes:
 

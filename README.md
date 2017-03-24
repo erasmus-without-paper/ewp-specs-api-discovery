@@ -73,8 +73,8 @@ API**.
 In other words, you will see a single `manifest-entry.xsd` file in **each** EWP
 API specification (Discovery Manifest API also [has one](manifest-entry.xsd)).
 
-For more information on `<apis-implemented>` element, see [Registry API]
-[registry-api]'s catalogue schema.
+For more information on `<apis-implemented>` element, see
+[Registry API][registry-api]'s catalogue schema.
 
 
 <a name='multi-manifest'></a>
@@ -91,8 +91,9 @@ most of the cases.
 However, what if your architecture is more complex? For example, what if the
 number of APIs covered differs from HEI to HEI?
 
-In its essence, each `<r:host>` element in the [Registry's catalogue response]
-[registry-api] is a [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)
+In its essence, each `<r:host>` element in the
+[Registry's catalogue response][registry-api] is a
+[cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)
 of many separate sets of elements: **HEIs**, **APIs**, **client certificates**,
 **admin email addresses**... This means that you can *change*, or *cut out*
 portions of the output product by defining **multiple** manifest files, with
