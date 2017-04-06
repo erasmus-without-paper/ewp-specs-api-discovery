@@ -5,6 +5,14 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
+4.0.5
+-----
+
+* Updated `manifest-example.xml`. It now features Echo API 2.0.0, which in turn
+  makes use of the new *Version 2* of *Authentication and Security*
+  specification.
+
+
 4.0.4
 -----
 
