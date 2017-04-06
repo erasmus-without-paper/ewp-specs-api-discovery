@@ -83,8 +83,8 @@ Splitting your manifest
 -----------------------
 
 Most of you will host a single manifest file only. This allows you to define
-the list of HEIs, APIs and certificates. Each certificate will be allowed to
-access the data of every HEI, and each API will be implemented for every one of
+the list of HEIs, APIs and credentials. Each of your clients will be allowed to
+resources as each of your HEIs, and each API will be implemented for all
 these HEIs too. This is usually the simplest approach, and should be enough for
 most of the cases.
 
@@ -94,7 +94,7 @@ number of APIs covered differs from HEI to HEI?
 In its essence, each `<r:host>` element in the
 [Registry's catalogue response][registry-api] is a
 [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)
-of many separate sets of elements: **HEIs**, **APIs**, **client certificates**,
+of many separate sets of elements: **HEIs**, **APIs**, **client credentials**,
 **admin email addresses**... This means that you can *change*, or *cut out*
 portions of the output product by defining **multiple** manifest files, with
 **smaller input sets** in each.
@@ -106,8 +106,8 @@ For example:
 
  * Or, you can declare a separate set of manifest files with HEIs and client
    credentials only (without the APIs). This will allow you to say that
-   **certificate X** should be allowed to request data as **HEI 1** only, while
-   **certificate Y** should be allowed to request data as **HEI 2 or HEI 3**.
+   **client X** should be allowed to request data as **HEI 1** only, while
+   **client Y** should be allowed to request data as **HEI 2 or HEI 3**.
 
  * Or, you can declare that **administrator A** should be contacted in
    case of problems with any of the **APIs** implemented for **HEI B** *only*,
