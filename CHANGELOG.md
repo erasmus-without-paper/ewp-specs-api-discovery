@@ -5,6 +5,13 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
+4.0.3
+-----
+
+* Just updated some links (after splitting the Architecture and Security
+  document).
+
+
 4.0.2
 -----
 
