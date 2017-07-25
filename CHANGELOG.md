@@ -5,6 +5,12 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
+4.0.4
+-----
+
+* Use a bit more explicit wording in different parts of the specification.
+
+
 4.0.3
 -----
 
