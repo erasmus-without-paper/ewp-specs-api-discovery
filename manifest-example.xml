@@ -127,4 +127,14 @@
             kY0Rd/lgQiQq3MUS8QIDAQAB
         </rsa-public-key>
     </client-credentials-in-use>
+
+    <server-credentials-in-use>
+        <!-- Used for HTTP Signature Authentication -->
+        <rsa-public-key>
+            MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCPDvfsASPv/upJzq9CKIwkJigJ
+            3tbQZm1h7dvV1+QONbGe30lr/R4XA846B6gmXeN0FwiSoYZglhXGapfVSfJWGcGD
+            Xl7QwlaDlX01mn/PNV6xoc64rYmmBhtq3x/nRqXxJ8GaJhgz/Y9DVoc5R1NiH7d5
+            kY0Rd/lgQiQq3MUS8QIDAQAB
+        </rsa-public-key>
+    </server-credentials-in-use>
 </manifest>
