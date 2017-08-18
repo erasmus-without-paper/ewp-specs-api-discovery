@@ -22,6 +22,9 @@
         https://github.com/erasmus-without-paper/ewp-specs-sec-cliauth-none/tree/stable-v1
         https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-sec-cliauth-none/stable-v1/security-entries.xsd
 
+        https://github.com/erasmus-without-paper/ewp-specs-sec-cliauth-httpsig/tree/stable-v1
+        https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-sec-cliauth-httpsig/stable-v1/security-entries.xsd
+
         https://github.com/erasmus-without-paper/ewp-specs-sec-cliauth-tlscert/tree/stable-v1
         https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-sec-cliauth-tlscert/stable-v1/security-entries.xsd
 
@@ -73,9 +76,11 @@
                         xmlns="https://github.com/erasmus-without-paper/ewp-specs-sec-cliauth-tlscert/tree/stable-v1"
                         allows-self-signed="true"
                     />
+                    <httpsig xmlns="https://github.com/erasmus-without-paper/ewp-specs-sec-cliauth-httpsig/tree/stable-v1"/>
                 </sec:client-auth-methods>
                 <sec:server-auth-methods>
                     <tlscert xmlns="https://github.com/erasmus-without-paper/ewp-specs-sec-srvauth-tlscert/tree/stable-v1"/>
+                    <httpsig xmlns="https://github.com/erasmus-without-paper/ewp-specs-sec-srvauth-httpsig/tree/stable-v1"/>
                 </sec:server-auth-methods>
             </http-security>
 
@@ -121,20 +126,26 @@
 
         <!-- And this one is used for HTTP Signature Authentication -->
         <rsa-public-key>
-            MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCPDvfsASPv/upJzq9CKIwkJigJ
-            3tbQZm1h7dvV1+QONbGe30lr/R4XA846B6gmXeN0FwiSoYZglhXGapfVSfJWGcGD
-            Xl7QwlaDlX01mn/PNV6xoc64rYmmBhtq3x/nRqXxJ8GaJhgz/Y9DVoc5R1NiH7d5
-            kY0Rd/lgQiQq3MUS8QIDAQAB
+            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkQojIPtX+BYGGC2f1zXr
+            U3ijq5oApW6YA+mSiB3p5pEQRUuvIHKbSKRXQaW/5hORYpWU1GzU2Wq99vykjX9b
+            8GQlM+0xbFP0cILIhjz23R0Q53mKcf2xAzQt2b3f56QOnjUaKbXsuB+ejTLAtQ4D
+            yKYSodCzUFkuUZUw+TK7G9ySMbcVHqrG8qDCw3/7CXkN0Wf9HpSnYP5fwd426fay
+            u6RXGeX5vUuX5BJkjsxoL8Smn7TB31LSFn3LbQLzG4UuxGaGgHWZCMSC35dX2d3z
+            4zcpZxgyN8LNWXCf4g95b20Ljsbnvk1dIUTJtRJJ29zbWXcgXgVl69UKQx8NxXIx
+            6wIDAQAB
         </rsa-public-key>
     </client-credentials-in-use>
 
     <server-credentials-in-use>
         <!-- Used for HTTP Signature Authentication -->
         <rsa-public-key>
-            MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCPDvfsASPv/upJzq9CKIwkJigJ
-            3tbQZm1h7dvV1+QONbGe30lr/R4XA846B6gmXeN0FwiSoYZglhXGapfVSfJWGcGD
-            Xl7QwlaDlX01mn/PNV6xoc64rYmmBhtq3x/nRqXxJ8GaJhgz/Y9DVoc5R1NiH7d5
-            kY0Rd/lgQiQq3MUS8QIDAQAB
+            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkQojIPtX+BYGGC2f1zXr
+            U3ijq5oApW6YA+mSiB3p5pEQRUuvIHKbSKRXQaW/5hORYpWU1GzU2Wq99vykjX9b
+            8GQlM+0xbFP0cILIhjz23R0Q53mKcf2xAzQt2b3f56QOnjUaKbXsuB+ejTLAtQ4D
+            yKYSodCzUFkuUZUw+TK7G9ySMbcVHqrG8qDCw3/7CXkN0Wf9HpSnYP5fwd426fay
+            u6RXGeX5vUuX5BJkjsxoL8Smn7TB31LSFn3LbQLzG4UuxGaGgHWZCMSC35dX2d3z
+            4zcpZxgyN8LNWXCf4g95b20Ljsbnvk1dIUTJtRJJ29zbWXcgXgVl69UKQx8NxXIx
+            6wIDAQAB
         </rsa-public-key>
     </server-credentials-in-use>
 </manifest>
