@@ -5,6 +5,15 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
+4.1.0
+-----
+
+* New optional element under `<client-credentials-in-use>`: `<rsa-public-key>`.
+* New optional `<manifest>` section: `<server-credentials-in-use>`. 
+* Updated `manifest-example.xml`. Makes use of the newly introduced elements,
+  and HTTP Signature authentication methods.
+
+
 4.0.5
 -----
 
