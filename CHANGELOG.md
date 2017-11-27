@@ -9,7 +9,7 @@ starting from its first released version.
 -----
 
 * New optional element under `<client-credentials-in-use>`: `<rsa-public-key>`.
-* New optional `<manifest>` section: `<server-credentials-in-use>`. 
+* New optional `<manifest>` section: `<server-credentials-in-use>`.
 * Updated `manifest-example.xml`. Makes use of the newly introduced elements,
   and HTTP Signature authentication methods.
 
