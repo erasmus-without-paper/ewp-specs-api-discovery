@@ -5,6 +5,20 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
+5.0.0-rc1
+---------
+
+New major version. **Backward-incompatible changes:**
+
+* All manifest contents are now required to be enclosed in the `<host>`
+  element.
+
+* The manifest MAY now contain any number of `<host>` elements (from zero to
+  infinity). Previously, the manifest could be used to describe exactly one EWP
+  Host. See
+  [this issue](https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/7).
+
+
 4.1.1
 -----
 

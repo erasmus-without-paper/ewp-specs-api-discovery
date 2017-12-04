@@ -44,7 +44,7 @@
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="host" minOccurs="1" maxOccurs="unbounded">
+                <xs:element ref="host" minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
                         <xs:documentation>
                             One v5 manifest file can describe multiple EWP Hosts (this is the primary
