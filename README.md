@@ -8,10 +8,6 @@ Discovery API
 Summary
 -------
 
-**IMPORTANT: This version of Discovery API is OBSOLETE. The Registry Service
-will keep recognizing manifests in version 4, but implementers are encouraged
-to upgrade to version 5 in order to be able to use new features.**
-
 **Discovery API** is the first API that the partner developer needs to
 implement in order to become a basic member of the *Erasmus Without Paper*
 Network.
