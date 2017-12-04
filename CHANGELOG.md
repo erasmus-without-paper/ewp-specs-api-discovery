@@ -5,6 +5,13 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
+4.1.1
+-----
+
+* Added notices about version `4.x.x` being obsoleted by version `5.0.0`.
+* Fixed some minor details in `manifest-example.xml`.
+
+
 4.1.0
 -----
 
