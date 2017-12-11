@@ -56,8 +56,8 @@ Client requirements
 -------------------
 
 In general, Manifest files **should be read by the Registry Service only**. You
-SHOULD NOT attempt to process the Manifest files of other EWP Hosts by
-yourself. Use the Registry instead.
+SHOULD NOT process the Manifest files of other partners by yourself. Use the
+Registry instead, to access this data.
 
 
 Discovery Manifest File
@@ -94,14 +94,21 @@ For more information on `<apis-implemented>` element, see
 
 <a name='multi-manifest'></a>
 
-Splitting your manifest
------------------------
+Splitting your EWP Hosts
+------------------------
 
-Most of you will host a single manifest file only. This allows you to define
-the list of HEIs, APIs and credentials. Each of your clients will be allowed to
-resources as each of your HEIs, and each API will be implemented for all
-these HEIs too. This is usually the simplest approach, and should be enough for
-most of the cases.
+Most of you will have a single `host` element in your manifest file. This
+allows you to define the list of HEIs, APIs and credentials, and bind them all
+to each other, i.e.:
+
+ - Each of your clients will be allowed to make requests in the name of each of
+   your covered HEIs.
+ - Each of your implemented APIs will be declared to work for all these HEIs
+   too.
+ - Etc.
+
+This is usually the simplest approach, and should be enough for most of the
+cases.
 
 However, what if your architecture is more complex? For example, what if the
 number of APIs covered differs from HEI to HEI?
@@ -111,27 +118,29 @@ In its essence, each `<r:host>` element in the
 [cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)
 of many separate sets of elements: **HEIs**, **APIs**, **client credentials**,
 **admin email addresses**... This means that you can *change*, or *cut out*
-portions of the output product by defining **multiple** manifest files, with
+portions of the output product by defining **multiple** `host` elements, with
 **smaller input sets** in each.
 
 For example:
 
- * You can declare one manifest file for each of your HEIs. This will allow you
+ * You can declare a separate `host` for each of your HEIs. This will allow you
    to "say" that you implement a different set of APIs for each of these HEIs.
 
- * Or, you can declare a separate set of manifest files with HEIs and client
+ * Or, you can declare a separate set of `host` which joins HEIs and client
    credentials only (without the APIs). This will allow you to say that
    **client X** should be allowed to request data as **HEI 1** only, while
    **client Y** should be allowed to request data as **HEI 2 or HEI 3**.
 
  * Or, you can declare that **administrator A** should be contacted in
    case of problems with any of the **APIs** implemented for **HEI B** *only*,
-   even if you cover multiple HEIs.
+   but not HEI A.
+
+ * Etc.
 
 All such configurations are valid, and the structure of the Registry's
 catalogue will enforce all clients to respect that. However, this will make
 the Registry's response more verbose, and more vague to understand for humans,
-so we advise to *not* split your manifest unless you really need to.
+so we advise to *not* split your `host` entries unless you really need to.
 
 
 [registry-intro]: https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/README.md#registry
