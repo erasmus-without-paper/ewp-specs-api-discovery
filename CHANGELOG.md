@@ -5,6 +5,13 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
+5.0.0-rc2
+---------
+
+* Minor fixes to the RC.
+* Updated example reflecting recent changes in the Registry API.
+
+
 5.0.0-rc1
 ---------
 
