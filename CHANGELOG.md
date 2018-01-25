@@ -5,15 +5,8 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
-5.0.0-rc2
----------
-
-* Minor fixes to the RC.
-* Updated example reflecting recent changes in the Registry API.
-
-
-5.0.0-rc1
----------
+5.0.0
+-----
 
 New major version. **Backward-incompatible changes:**
 
@@ -24,6 +17,13 @@ New major version. **Backward-incompatible changes:**
   infinity). Previously, the manifest could be used to describe exactly one EWP
   Host. See
   [this issue](https://github.com/erasmus-without-paper/ewp-specs-api-discovery/issues/7).
+
+Other changes:
+
+* Updated example reflecting recent changes in the Registry API.
+
+Note, that at the moment, the Registry Service supports both major formats (4
+and 5).
 
 
 4.1.1
