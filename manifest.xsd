@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xml="http://www.w3.org/XML/1998/namespace"
     xmlns:ewp="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
     xmlns:r="https://github.com/erasmus-without-paper/ewp-specs-api-registry/tree/stable-v1"
     elementFormDefault="qualified"
@@ -88,6 +87,9 @@
                             Please note, that additional `admin-email` elements can also be included inside
                             specific APIs sections (this allows you to add extra admins to specific APIs
                             without the need of creating extra `host` entries).
+
+                            Please also note, that this address SHOULD NOT be associated
+                            with any person because of GDPR. It is RECOMMENDED to use company aliases.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
