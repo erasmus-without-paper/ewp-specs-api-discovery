@@ -5,6 +5,14 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
+5.1.0
+-----
+
+* Added note about using company aliases as admin-email.
+* Imposed 1 to 1 communication in EWP.
+  **It is no longer possible to have more than one host and one hei in a manifest!**
+
+
 5.0.0
 -----
 
