@@ -76,6 +76,16 @@
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
+                <xs:element name="admin-provider" type="xs:string" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            REQUIRED element. Name of the EWP host provider and optionally name
+                            of the system software in parentheses. Must be provided in English.
+
+                            E.g. "MUCI (USOS)", "Gent University (OASIS)", "Masaryk University (ISOIS)".
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
                 <xs:element ref="r:apis-implemented" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="institutions-covered" minOccurs="0" maxOccurs="1">
                     <xs:annotation>

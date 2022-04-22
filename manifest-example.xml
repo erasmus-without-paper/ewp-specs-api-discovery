@@ -62,6 +62,7 @@
                 <ewp:admin-email>usually-a-developer@example.com</ewp:admin-email>
                 <ewp:admin-email>some-other-developer@example.com</ewp:admin-email>
                 <ewp:admin-notes>Some notes which might be useful for client developers.</ewp:admin-notes>
+                <admin-provider>MUCI (USOS)</admin-provider>
 
                 <!-- Many APIs define the security requirements of their implementations with help
                 of elements like this one. See Echo API's manifest-entry.xsd file for details. -->
