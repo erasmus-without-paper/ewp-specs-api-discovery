@@ -36,6 +36,7 @@
     <!-- This example doesn't contain many comments, but its XML Schema does! -->
     <host>
         <ewp:admin-email>admin-or-developer@example.com</ewp:admin-email>
+        <ewp:admin-provider>MUCI (USOS)</ewp:admin-provider>
         <ewp:admin-notes>It's not a real manifest. Just an example.</ewp:admin-notes>
 
         <r:apis-implemented>
@@ -61,7 +62,6 @@
                 global level, and on the API level. -->
                 <ewp:admin-email>usually-a-developer@example.com</ewp:admin-email>
                 <ewp:admin-email>some-other-developer@example.com</ewp:admin-email>
-                <ewp:admin-provider>MUCI (USOS)</ewp:admin-provider>
                 <ewp:admin-notes>Some notes which might be useful for client developers.</ewp:admin-notes>
 
                 <!-- Many APIs define the security requirements of their implementations with help
