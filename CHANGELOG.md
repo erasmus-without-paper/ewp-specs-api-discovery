@@ -5,6 +5,21 @@ This document describes all the changes made to the *Discovery API* document,
 starting from its first released version.
 
 
+6.0.0
+-----
+
+New major version. **Backward-incompatible changes:**
+
+* Added obligatory information about host provider (#19).
+* Made admin-email element required.
+
+Other changes:
+
+* Forbidden admin-email to be associated with any person.
+
+Note, that at the moment, the Registry Service supports both major formats (5 and 6).
+
+
 5.1.0
 -----
 
@@ -30,8 +45,7 @@ Other changes:
 
 * Updated example reflecting recent changes in the Registry API.
 
-Note, that at the moment, the Registry Service supports both major formats (4
-and 5).
+Note, that at the moment, the Registry Service supports both major formats (4 and 5).
 
 
 4.1.1
