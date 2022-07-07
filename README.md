@@ -20,12 +20,12 @@ going to use when fetching the data from the EWP Network.
 Older versions
 --------------
 
-Note, that there's also [an older version 4 of this API][discovery-v4], which
+Note, that there's also [an older version 5 of this API][discovery-v5], which
 is still supported by the Registry Service, and documents in this format may
 still appear in various places.
 
 It is RECOMMENDED for all developers to upgrade their implementations to
-version 5 though. Version 4 will no longer be developed.
+version 6 though. Version 5 will be discontinued.
 
 
 Server requirements
@@ -96,4 +96,4 @@ For more information on `<apis-implemented>` element, see
 [registry-api]: https://github.com/erasmus-without-paper/ewp-specs-api-registry
 [develhub]: http://developers.erasmuswithoutpaper.eu/
 [statuses]: https://github.com/erasmus-without-paper/ewp-specs-management/blob/stable-v1/README.md#statuses
-[discovery-v4]: https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v4
+[discovery-v5]: https://github.com/erasmus-without-paper/ewp-specs-api-discovery/tree/stable-v5
