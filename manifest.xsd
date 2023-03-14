@@ -134,21 +134,6 @@
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="certificate" type="xs:base64Binary" minOccurs="0" maxOccurs="unbounded">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Base64-encoded X.509 certificate used by the partner for TLS Client
-                                        Authentication, as described here:
-
-                                        https://github.com/erasmus-without-paper/ewp-specs-sec-cliauth-tlscert
-
-                                        If your private key is compromised, you MUST immediately remove all
-                                        certificates based on this key from your manifest.
-
-                                        **Certificate MUST be unique in the whole EWP network**.
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
                             <xs:element name="rsa-public-key" type="xs:base64Binary" minOccurs="0" maxOccurs="unbounded">
                                 <xs:annotation>
                                     <xs:documentation>
