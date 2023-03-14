@@ -17,17 +17,6 @@ features (APIs) you have implemented, and which credentials your clients are
 going to use when fetching the data from the EWP Network.
 
 
-Older versions
---------------
-
-Note, that there's also [an older version 5 of this API][discovery-v5], which
-is still supported by the Registry Service, and documents in this format may
-still appear in various places.
-
-It is RECOMMENDED for all developers to upgrade their implementations to
-version 6 though. Version 5 will be discontinued.
-
-
 Server requirements
 -------------------
 
